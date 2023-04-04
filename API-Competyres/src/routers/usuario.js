@@ -3,7 +3,7 @@ const Usuario = require('../models/usuario')
 const router = new express.Router()
 
 
-router.post('/usuario', async (req, res) => {
+router.post('/crearusuario', async (req, res) => {
     const usuario = new Usuario(req.body)
 
     try {

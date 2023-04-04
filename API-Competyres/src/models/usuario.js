@@ -36,14 +36,14 @@ const usuarioSchema = new mongoose.Schema({
             }
         }
     },
-    contraseña: {
+    contrasena: {
         type: String,
         required: true,
         minlength: 7,
         trim: true,
         validate(value) {
-            if (value.toLowerCase().includes('contraseña')) {
-                throw new Error('La contraseña no contiene "contraseña"')
+            if (value.toLowerCase().includes('contrasena')) {
+                throw new Error('La contrasena no contiene "contrasena"')
             }
         }
     },
@@ -60,7 +60,7 @@ usuarioSchema.methods.toJSON = function () {
     const usuario = this
     const objetoUsuario = usuario.toObject()
 
-    delete objetoUsuario.contraseña
+    delete objetoUsuario.contrasena
     delete objetoUsuario.tokens
 
     return objetoUsuario
@@ -78,17 +78,17 @@ usuarioSchema.methods.generateAuthToken = async function () {
 }
 
 
-usuarioSchema.statics.findByCredentials = async (email, contraseña) => {
+usuarioSchema.statics.findByCredentials = async (email, contrasena) => {
     const usuario = await usuario.findOne({ email })
 
     if (!usuario) {
         throw new Error('Error al introducir el email')
     }
 
-    const isMatch = await bcrypt.compare(contraseña, usuario.contraseña)
+    const isMatch = await bcrypt.compare(contrasena, usuario.contrasena)
 
     if (!isMatch) {
-        throw new Error('Error al introducir la contraseña')
+        throw new Error('Error al introducir la contrasena')
     }
 
     return usuario
@@ -98,8 +98,8 @@ usuarioSchema.statics.findByCredentials = async (email, contraseña) => {
 usuarioSchema.pre('save', async function (next) {
     const usuario = this
 
-    if (usuario.isModified('contraseña')) {
-        usuario.contraseña = await bcrypt.hash(user.contraseña, 8)
+    if (usuario.isModified('contrasena')) {
+        usuario.contrasena = await bcrypt.hash(usuario.contrasena, 8)
     }
 
     next()
