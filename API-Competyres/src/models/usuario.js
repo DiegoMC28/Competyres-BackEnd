@@ -79,7 +79,7 @@ usuarioSchema.methods.generateAuthToken = async function () {
 
 
 usuarioSchema.statics.findByCredentials = async (email, contrasena) => {
-    const usuario = await usuario.findOne({ email })
+    const usuario = await Usuario.findOne({ email })
 
     if (!usuario) {
         throw new Error('Error al introducir el email')
