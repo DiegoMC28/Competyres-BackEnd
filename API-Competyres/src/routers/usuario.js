@@ -1,5 +1,6 @@
 const express = require('express')
 const Usuario = require('../models/usuario')
+const autentificacion = require('../middleware/autentificacion')
 const router = new express.Router()
 
 
@@ -27,6 +28,24 @@ router.post('/login', async (req, res) => {
     }
 })
 
+router.post('/logout', autentificacion, async (req, res) => {
+    try {
+        req.usuario.tokens = req.usuario.tokens.filter((token) => {
+            return token.token !== req.token
+        })
+        await req.usuario.save()
+
+        res.send()
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+
+router.get('/obtenerusuario', autentificacion, async (req, res) => {
+    res.send(req.usuario)
+})
+
 router.patch('/actualizarusuario/:id', async (req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['nombre', 'apellido', 'edad', 'email', 'contrasena']
@@ -46,6 +65,20 @@ router.patch('/actualizarusuario/:id', async (req, res) => {
         res.send(usuario)
     } catch (e) {
         res.status(400).send(e)
+    }
+})
+
+router.delete('/eliminarusuario/:id', async (req, res) => {
+    try {
+        const usuario = await Usuario.findByIdAndDelete(req.params.id)
+
+        if (!usuario) {
+            res.status(404).send()
+        }
+
+        res.send(usuario)
+    } catch (e) {
+        res.status(500).send()
     }
 })
 

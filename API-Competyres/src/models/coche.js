@@ -12,7 +12,7 @@ const Coche = mongoose.model('Coche', {
         trim: true
     },
     categoria: {
-        type: Number,
+        type: String,
         required: true,
         trim: true
     },
@@ -24,6 +24,10 @@ const Coche = mongoose.model('Coche', {
                 throw new Error('El año debe ser un numero positivo mayor que 1894')
             }
         }
+    },
+    precio: {
+        type: Number,
+        required: true
     },
     descripcion: {
         type: String,
