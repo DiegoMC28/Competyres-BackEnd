@@ -1,8 +1,9 @@
 const Coche = require('../models/coche')
 const express = require('express')
+const autentificacion = require('../middleware/autentificacion')
 const router = new express.Router()
 
-router.post('/registrarcoche', async (req, res) => {
+router.post('/registrarcoche', autentificacion,async (req, res) => {
     const coche = new Coche(req.body)
 
     try {
@@ -14,7 +15,7 @@ router.post('/registrarcoche', async (req, res) => {
 })
 
 
-router.get('/obtenercoches', async (req, res)=>{
+router.get('/obtenercoches', autentificacion,async (req, res)=>{
     try {
         const coche = await Coche.find({})
         res.status(200).send(coche)
@@ -24,7 +25,7 @@ router.get('/obtenercoches', async (req, res)=>{
 
 })
 
-router.get('/obtenercoche/:id', async (req, res)=>{
+router.get('/obtenercoche/:id', autentificacion,async (req, res)=>{
     const _id = req.params.id
     try{
         const coche = await Coche.findById(_id)
@@ -42,10 +43,10 @@ router.get('/obtenercoche/:id', async (req, res)=>{
 
 })
 
-/*
-router.patch('/actualizarcoche/:id', async (req, res) => {
+
+router.patch('/actualizarcoche/:id', autentificacion,async (req, res) => {
     const updates = Object.keys(req.body)
-    const allowedUpdates = ['nombre', 'puntuacion']
+    const allowedUpdates = ['modelo', 'escuderia', 'categoria', 'ultimoAñoDeCompeticion', 'precio', 'descripcion', 'disponible']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 
     if (!isValidOperation) {
@@ -53,33 +54,33 @@ router.patch('/actualizarcoche/:id', async (req, res) => {
     }
 
     try {
-        const course = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
+        const coche = await Coche.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
 
-        if (!course) {
+        if (!coche) {
             return res.status(404).send()
         }
 
-        res.send(course)
+        res.send(coche)
     } catch (e) {
         res.status(400).send(e)
     }
 })
 
 
-router.delete('/course/:id', async (req, res) => {
+router.delete('/eliminarcoche/:id', autentificacion,async (req, res) => {
     try {
-        const course = await Course.findByIdAndDelete(req.params.id)
+        const coche = await Coche.findByIdAndDelete(req.params.id)
 
-        if (!course) {
+        if (!coche) {
             res.status(404).send()
         }
 
-        res.send(course)
+        res.send(coche)
     } catch (e) {
         res.status(500).send()
     }
 })
 
-*/
+
 
 module.exports = router

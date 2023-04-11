@@ -12,7 +12,7 @@ const Circuito = mongoose.model('Circuito', {
         trim: true
     },
     extension: {
-        type: Number,
+        type: String,
         required: true,
         trim: true
     },

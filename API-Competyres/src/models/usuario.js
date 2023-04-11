@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const Coche = require('./coche')
+const Circuito = require('./circuito')
 
 
 const usuarioSchema = new mongoose.Schema({
@@ -43,10 +45,34 @@ const usuarioSchema = new mongoose.Schema({
         trim: true,
         validate(value) {
             if (value.toLowerCase().includes('contrasena')) {
-                throw new Error('La contrasena no contiene "contrasena"')
+                throw new Error('La contrasena contiene "contrasena"')
             }
         }
     },
+    alquileres: [{
+        coche: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "Coche"
+        },
+        circuito: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "Circuito"
+        },
+        fecha: {
+            type: Date,
+            required: true
+        },
+        vueltas: {
+            type: Number,
+            required: true
+        },
+        precio: {
+            type: Number,
+            required: true
+        }
+    }],
     tokens: [{
         token: {
             type: String,
@@ -54,7 +80,6 @@ const usuarioSchema = new mongoose.Schema({
         }
     }]
 })
-
 
 usuarioSchema.methods.toJSON = function () {
     const usuario = this
