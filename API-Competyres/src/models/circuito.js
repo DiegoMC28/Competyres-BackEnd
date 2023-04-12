@@ -21,9 +21,10 @@ const Circuito = mongoose.model('Circuito', {
         required: true
     }
     ,
-    disponible: {
-        type: Boolean,
-        default: false,
+    capacidadCoches: {
+        type: Number,
+        required: true,
+        default: 10
     }
 })
 
