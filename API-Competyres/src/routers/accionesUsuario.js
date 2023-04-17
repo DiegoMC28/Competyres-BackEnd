@@ -41,6 +41,27 @@ router.get('/obteneralquileres', autentificacion, async (req, res) => {
 
 })
 
+router.get('/obteneralquiler/:id', autentificacion, async (req, res) => {
+
+        try {
+            const usuario = req.usuario
+            for (let i = 0; i < usuario.alquileres.length; i++) {
+                if (usuario.alquileres[i].id === req.params.id) {
+                    
+                    return res.send(usuario.alquileres[i])
+                } 
+            }
+
+
+            return res.send("No se encuentra el alquiler")
+        } catch (e) {
+            res.status(400).send(e)
+        }
+    
+    }
+
+)
+
 router.delete('/eliminaralquiler/:id', autentificacion, async (req, res) => {
     try {
         const usuario = req.usuario
