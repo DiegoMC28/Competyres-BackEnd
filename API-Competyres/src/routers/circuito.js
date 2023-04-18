@@ -3,7 +3,7 @@ const express = require('express')
 const autentificacion = require('../middleware/autentificacion')
 const router = new express.Router()
 
-router.post('/registrarcircuito', autentificacion, async (req, res) => {
+router.post('/circuito', autentificacion, async (req, res) => {
     const circuito = new Circuito(req.body)
 
     try {
@@ -15,7 +15,7 @@ router.post('/registrarcircuito', autentificacion, async (req, res) => {
 })
 
 
-router.get('/obtenercircuito', autentificacion, async (req, res) => {
+router.get('/circuitos', autentificacion, async (req, res) => {
     try {
         const circuito = await Circuito.find({})
         res.status(200).send(circuito)
@@ -25,7 +25,7 @@ router.get('/obtenercircuito', autentificacion, async (req, res) => {
 
 })
 
-router.get('/obtenercircuito/:id', autentificacion, async (req, res) => {
+router.get('/circuito/:id', autentificacion, async (req, res) => {
     const _id = req.params.id
     try {
         const circuito = await Circuito.findById(_id)
@@ -44,7 +44,7 @@ router.get('/obtenercircuito/:id', autentificacion, async (req, res) => {
 })
 
 
-router.patch('/actualizarcircuito/:id', autentificacion, async (req, res) => {
+router.patch('/circuito/:id', autentificacion, async (req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['nombre', 'ubicacion', 'extension', 'descripcion', 'disponible']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
@@ -67,7 +67,7 @@ router.patch('/actualizarcircuito/:id', autentificacion, async (req, res) => {
 })
 
 
-router.delete('/eliminarcircuito/:id', autentificacion, async (req, res) => {
+router.delete('/circuito/:id', autentificacion, async (req, res) => {
     try {
         const circuito = await Circuito.findByIdAndDelete(req.params.id)
 

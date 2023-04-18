@@ -3,7 +3,7 @@ const express = require('express')
 const autentificacion = require('../middleware/autentificacion')
 const router = new express.Router()
 
-router.post('/registrarcoche', autentificacion,async (req, res) => {
+router.post('/coche', autentificacion,async (req, res) => {
     const coche = new Coche(req.body)
 
     try {
@@ -15,7 +15,7 @@ router.post('/registrarcoche', autentificacion,async (req, res) => {
 })
 
 
-router.get('/obtenercoches', autentificacion,async (req, res)=>{
+router.get('/coches', autentificacion,async (req, res)=>{
     try {
         const coche = await Coche.find({})
         res.status(200).send(coche)
@@ -25,7 +25,7 @@ router.get('/obtenercoches', autentificacion,async (req, res)=>{
 
 })
 
-router.get('/obtenercoche/:id', autentificacion,async (req, res)=>{
+router.get('/coche/:id', autentificacion,async (req, res)=>{
     const _id = req.params.id
     try{
         const coche = await Coche.findById(_id)
@@ -44,7 +44,7 @@ router.get('/obtenercoche/:id', autentificacion,async (req, res)=>{
 })
 
 
-router.patch('/actualizarcoche/:id', autentificacion,async (req, res) => {
+router.patch('/coche/:id', autentificacion,async (req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['modelo', 'escuderia', 'categoria', 'ultimoAñoDeCompeticion', 'precio', 'descripcion', 'disponible']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
@@ -67,7 +67,7 @@ router.patch('/actualizarcoche/:id', autentificacion,async (req, res) => {
 })
 
 
-router.delete('/eliminarcoche/:id', autentificacion,async (req, res) => {
+router.delete('/coche/:id', autentificacion,async (req, res) => {
     try {
         const coche = await Coche.findByIdAndDelete(req.params.id)
 

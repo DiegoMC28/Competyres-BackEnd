@@ -4,7 +4,7 @@ const autentificacion = require('../middleware/autentificacion')
 const router = new express.Router()
 
 
-router.post('/crearusuario', async (req, res) => {
+router.post('/usuario', async (req, res) => {
     const usuario = new Usuario(req.body)
 
     try {
@@ -35,18 +35,18 @@ router.post('/logout', autentificacion, async (req, res) => {
         })
         await req.usuario.save()
 
-        res.send()
+        res.send("Sesion cerrada")
     } catch (e) {
         res.status(500).send()
     }
 })
 
 
-router.get('/obtenerusuario', autentificacion, async (req, res) => {
+router.get('/usuario', autentificacion, async (req, res) => {
     res.send(req.usuario)
 })
 
-router.patch('/actualizarusuario', autentificacion, async (req, res) => {
+router.patch('/usuario/:id', autentificacion, async (req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['nombre', 'apellido', 'edad', 'email', 'contrasena']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
@@ -64,7 +64,7 @@ router.patch('/actualizarusuario', autentificacion, async (req, res) => {
     }
 })
 
-router.delete('/eliminarusuario/:id', async (req, res) => {
+router.delete('/usuario/:id', autentificacion, async (req, res) => {
     try {
         const usuario = await Usuario.findByIdAndDelete(req.params.id)
 
