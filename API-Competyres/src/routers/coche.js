@@ -31,9 +31,7 @@ router.get('/coche/:id', autentificacion,async (req, res)=>{
         const coche = await Coche.findById(_id)
         
 
-        if (!coche) {
-            return res.status(404).send()
-        }
+        if (!coche) return res.status(404).send()
 
         res.status(200).send(coche)
 
@@ -56,9 +54,7 @@ router.patch('/coche/:id', autentificacion,async (req, res) => {
     try {
         const coche = await Coche.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
 
-        if (!coche) {
-            return res.status(404).send()
-        }
+        if (!coche) return res.status(404).send()
 
         res.send(coche)
     } catch (e) {
@@ -71,9 +67,7 @@ router.delete('/coche/:id', autentificacion,async (req, res) => {
     try {
         const coche = await Coche.findByIdAndDelete(req.params.id)
 
-        if (!coche) {
-            res.status(404).send()
-        }
+        if (!coche) res.status(404).send()
 
         res.send(coche)
     } catch (e) {

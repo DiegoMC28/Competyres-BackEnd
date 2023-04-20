@@ -51,9 +51,7 @@ router.patch('/usuario/:id', autentificacion, async (req, res) => {
     const allowedUpdates = ['nombre', 'apellido', 'edad', 'email', 'contrasena']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 
-    if (!isValidOperation) {
-        return res.status(400).send({ error: '¡Error al actualizar!' })
-    }
+    if (!isValidOperation) return res.status(400).send({ error: '¡Error al actualizar!' })
 
     try {
         updates.forEach((update) => req.usuario[update] = req.body[update])
@@ -68,9 +66,7 @@ router.delete('/usuario/:id', autentificacion, async (req, res) => {
     try {
         const usuario = await Usuario.findByIdAndDelete(req.params.id)
 
-        if (!usuario) {
-            res.status(404).send()
-        }
+        if (!usuario) res.status(404).send()
 
         res.send(usuario)
     } catch (e) {

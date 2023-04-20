@@ -21,7 +21,7 @@ const Coche = mongoose.model('Coche', {
         default: 0,
         validate(value) {
             if (value < 1894) {
-                throw new Error('El año debe ser un numero positivo mayor que 1894')
+                throw new Error('El año debe ser un numero mayor que 1894')
             }
         }
     },

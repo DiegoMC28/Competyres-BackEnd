@@ -31,9 +31,7 @@ router.get('/circuito/:id', autentificacion, async (req, res) => {
         const circuito = await Circuito.findById(_id)
 
 
-        if (!circuito) {
-            return res.status(404).send()
-        }
+        if (!circuito) return res.status(404).send()
 
         res.status(200).send(circuito)
 
@@ -56,9 +54,7 @@ router.patch('/circuito/:id', autentificacion, async (req, res) => {
     try {
         const circuito = await Circuito.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
 
-        if (!circuito) {
-            return res.status(404).send()
-        }
+        if (!circuito) return res.status(404).send()
 
         res.send(circuito)
     } catch (e) {
@@ -71,9 +67,7 @@ router.delete('/circuito/:id', autentificacion, async (req, res) => {
     try {
         const circuito = await Circuito.findByIdAndDelete(req.params.id)
 
-        if (!circuito) {
-            res.status(404).send()
-        }
+        if (!circuito) res.status(404).send()
 
         res.send(circuito)
     } catch (e) {
