@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Tarjeta from '../Tarjeta/Tarjeta';
 
 
-function CuerpoPagina() {
+function PaginaPrincipal() {
     return (
         <Container >
             <br />
@@ -24,4 +24,4 @@ function CuerpoPagina() {
     );
 }
 
-export default CuerpoPagina;
+export default PaginaPrincipal;
