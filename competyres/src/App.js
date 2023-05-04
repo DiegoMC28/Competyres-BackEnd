@@ -1,5 +1,5 @@
 import './App.css';
-import RootLayout from './pages/Cabecera';
+import Layout from './pages/Layout';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import ErrorPage from './pages/Error';
 import PaginaPrincipal from './components/PaginaPrincipal/PaginaPrincipal';
@@ -10,7 +10,7 @@ import Resgistrarse from './pages/Registrarse';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <RootLayout />,
+    element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <PaginaPrincipal /> },

@@ -3,21 +3,22 @@ import { useRouteError } from 'react-router-dom';
 function ErrorPage() {
   const error = useRouteError();
 
-  let title = 'An error occurred!';
-  let message = 'Something went wrong!';
+  let titulo = 'Ha ocurrido un error!';
+  let mensaje = 'Algo ha ido mal!';
 
   if (error.status === 500) {
-    message = error.data.message;
+    mensaje = error.data.message;
   }
 
   if (error.status === 404) {
-    title = 'Not found!';
-    message = 'Could not find resource or page.';
+    titulo = 'Error 404';
+    mensaje = 'No se encuentra la pagina.';
   }
 
   return (
     <>
-      <p>Error</p>
+      <h1>{titulo}</h1>
+      <h2>{mensaje}</h2>
     </>
   );
 }

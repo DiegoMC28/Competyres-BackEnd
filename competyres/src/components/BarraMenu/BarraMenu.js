@@ -8,13 +8,13 @@ function BarraMenu() {
   return (
     <Navbar bg="danger" variant='dark' expand="lg">
       <Container>
-        <Navbar.Brand href="/">Competyres</Navbar.Brand>
+      <NavLink to="/"><Navbar.Brand >Competyres</Navbar.Brand></NavLink>
         <Nav className='m-auto'>
-          <Nav.Link href="/prueba">Inciar sesion</Nav.Link>
-          <Nav.Link href="/registrarse">Registrarse</Nav.Link>
-          <Nav.Link href="#home">Coches</Nav.Link>
-          <Nav.Link href="#home">Circuitos</Nav.Link>
-          <NavDropdown title="Algo"  >
+          <NavLink to="/prueba">Inciar sesion</NavLink>
+          <NavLink to="/registrarse">Registrarse</NavLink>
+          <NavLink to="#home">Coches</NavLink>
+          <NavLink to="#home">Circuitos</NavLink>
+          <NavDropdown title="Algo" >
             <NavDropdown.Item href="#action/3.1">Coches</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.2">Circuitos</NavDropdown.Item>

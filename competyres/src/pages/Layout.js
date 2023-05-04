@@ -1,15 +1,15 @@
-import { Outlet, useNavigation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import logo from '../logo.svg';
 
 import BarraMenu from '../components/BarraMenu/BarraMenu';
 
-function Cabecera() {
+function Layout() {
   return (
     <>
       <div className='fondoOscuro'>
         <img src={logo} className="App-logo"></img>
         <BarraMenu />
-        <main >
+        <main>
           <Outlet />
         </main>
       </div>
@@ -17,4 +17,4 @@ function Cabecera() {
   );
 }
 
-export default Cabecera;
+export default Layout;
