@@ -15,7 +15,7 @@ router.post('/noticia', autentificacion,async (req, res) => {
 })
 
 
-router.get('/noticias', autentificacion,async (req, res)=>{
+router.get('/noticias',async (req, res)=>{
     try {
         const noticias = await Noticia.find({})
         res.status(200).send(noticias)

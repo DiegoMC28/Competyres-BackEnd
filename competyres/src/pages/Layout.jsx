@@ -7,7 +7,7 @@ function Layout() {
   return (
     <>
       <div className='fondoOscuro'>
-        <img src={logo} className="App-logo"></img>
+        <img alt='Logo de la app' src={logo} className="App-logo"></img>
         <BarraMenu />
         <main>
           <Outlet />

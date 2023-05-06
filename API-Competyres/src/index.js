@@ -10,7 +10,7 @@ const accionesUsuario = require('./routers/accionesUsuario')
 const app = express()
 const port = process.env.PORT || 3028
 
-app.use(cors)
+app.use(cors())
 app.use(express.json())
 app.use(usuarioRouter)
 app.use(cocheRouter)

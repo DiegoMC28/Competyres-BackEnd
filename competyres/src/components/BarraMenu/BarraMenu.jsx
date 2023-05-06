@@ -12,15 +12,15 @@ function BarraMenu() {
         <Nav className='m-auto'>
           <NavLink to="/prueba">Inciar sesion</NavLink>
           <NavLink to="/registrarse">Registrarse</NavLink>
-          <NavLink to="#home">Coches</NavLink>
-          <NavLink to="#home">Circuitos</NavLink>
-          <NavDropdown title="Algo" >
+          <NavLink to="/coches">Coches</NavLink>
+          <NavLink to="/circuitos">Circuitos</NavLink>
+          {/* <NavDropdown title="Algo" >
             <NavDropdown.Item href="#action/3.1">Coches</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.2">Circuitos</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.3">Info</NavDropdown.Item>
-          </NavDropdown>
+          </NavDropdown> */}
         </Nav>
       </Container>
     </Navbar>
