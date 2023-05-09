@@ -15,7 +15,7 @@ router.post('/coche', autentificacion,async (req, res) => {
 })
 
 
-router.get('/coches', autentificacion,async (req, res)=>{
+router.get('/coches',async (req, res)=>{
     try {
         const coche = await Coche.find({})
         res.status(200).send(coche)

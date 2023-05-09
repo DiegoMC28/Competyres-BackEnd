@@ -1,12 +1,12 @@
 import './App.css';
-import Layout from './pages/Layout';
+import Layout from './routes/Layout';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import ErrorPage from './pages/Error';
 import PaginaPrincipal from './components/PaginaPrincipal/PaginaPrincipal';
-import PaginaPrueba from './pages/paginaprueba';
 import Resgistrarse from './pages/Registrarse';
 import Coches from './pages/Coches';
 import Circuito from './pages/Circuitos';
+import Login from './pages/Login';
 
 
 const router = createBrowserRouter([
@@ -17,8 +17,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <PaginaPrincipal /> },
       {
-        path: 'prueba',
-        element: <PaginaPrueba />
+        path: 'login',
+        element: <Login />
       },
       {
         path: 'registrarse',

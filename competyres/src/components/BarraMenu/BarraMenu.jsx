@@ -10,7 +10,7 @@ function BarraMenu() {
       <Container>
       <NavLink to="/"><Navbar.Brand >Competyres</Navbar.Brand></NavLink>
         <Nav className='m-auto'>
-          <NavLink to="/prueba">Inciar sesion</NavLink>
+          <NavLink to="/login">Inciar sesion</NavLink>
           <NavLink to="/registrarse">Registrarse</NavLink>
           <NavLink to="/coches">Coches</NavLink>
           <NavLink to="/circuitos">Circuitos</NavLink>

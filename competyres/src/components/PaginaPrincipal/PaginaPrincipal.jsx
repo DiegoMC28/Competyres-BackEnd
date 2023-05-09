@@ -4,34 +4,36 @@ import Col from "react-bootstrap/Col";
 import Tarjeta from "../Tarjeta/Tarjeta";
 import logo from "../../logo.svg";
 import useHttp from "../../hooks/use-http";
-import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import { responsivePropType } from "react-bootstrap/esm/createUtilityClasses";
+import React, {useEffect, useState } from "react";
+let onlyOnce = true;
 
 function PaginaPrincipal() {
-  const { isLoading, error, sendRequest: sendRequest } = useHttp();
+  const { sendRequest } = useHttp();
   const [noticias, setNoticias] = useState([]);
 
-  const noticiasHandler = async () => {
-    const config = {
-      url: "/noticias",
-      method: "GET",
-    };
+  useEffect(() => {
+    if (onlyOnce) {
+      const config = {
+        url: "/noticias",
+        method: "GET",
+      };
 
-    const respuesta = await sendRequest(config);
+      sendRequest(config).then((respuesta) => {
+        setNoticias(respuesta);
+      });
 
-    setNoticias(respuesta);
-    console.log(respuesta);
-  };
+      onlyOnce = false;
+    }
+  }, [sendRequest]);
 
   return (
     <Container>
-      
       {noticias.map((noticia) => (
-        <Row>
+        <Row key={noticia._id}>
           <Col></Col>
           <Col>
             <Tarjeta
+              tamañoTarjeta="50rem"
               titulo={noticia.titulo}
               cuerpo={noticia.cuerpo}
               imagen={logo}
@@ -40,12 +42,6 @@ function PaginaPrincipal() {
           <Col></Col>
         </Row>
       ))}
-      
-      <div>
-        <Button onClick={noticiasHandler} variant="success">
-          {isLoading ? "Enviando..." : "Submit"}
-        </Button>
-      </div>
     </Container>
   );
 }

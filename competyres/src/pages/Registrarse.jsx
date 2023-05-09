@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import useHttp from "../hooks/use-http";
 import "../App.css";
+import { Link } from "react-router-dom";
 
 const isNotEmpty = (value) => value.trim() !== "";
 const isEmail = (value) => value.includes("@");
@@ -29,9 +30,9 @@ const Resgistrarse = () => {
       },
     };
 
-   const respuesta = await sendRequest(config);
+    const respuesta = await sendRequest(config);
 
-   console.log(respuesta);
+    console.log(respuesta);
   };
 
   const {
@@ -210,8 +211,9 @@ const Resgistrarse = () => {
                       onClick={onClickHandler}
                       variant="success"
                       disabled={!formIsValid}
-                    >
+                    ><Link to="/">
                       {isLoading ? "Enviando..." : "Submit"}
+                      </Link>
                     </Button>
                   </div>
                   {error && <Alert variant="danger">{error}</Alert>}

@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 
 function Tarjeta(props) {
   return (
-    <Card style={{ width: '50rem', }}> 
+    <Card style={{ width: props.tamañoTarjeta, }}> 
       <Card.Body>
         <Card.Title>{props.titulo}</Card.Title>
         <Card.Text>
