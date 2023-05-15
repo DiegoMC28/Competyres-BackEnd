@@ -3,7 +3,7 @@ const express = require('express')
 const autentificacion = require('../middleware/autentificacion')
 const router = new express.Router()
 
-router.post('/circuito', autentificacion, async (req, res) => {
+router.post('/circuito', async (req, res) => {
     const circuito = new Circuito(req.body)
 
     try {
@@ -15,7 +15,7 @@ router.post('/circuito', autentificacion, async (req, res) => {
 })
 
 
-router.get('/circuitos', autentificacion, async (req, res) => {
+router.get('/circuitos', async (req, res) => {
     try {
         const circuito = await Circuito.find({})
         res.status(200).send(circuito)

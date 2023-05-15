@@ -4,25 +4,27 @@ import Col from "react-bootstrap/Col";
 import Tarjeta from "../components/Tarjeta/Tarjeta";
 import logo from "../logo.svg";
 import useHttp from "../hooks/use-http";
-import { useState } from "react";
-import Button from "react-bootstrap/Button";
-
+import { useState, useEffect } from "react";
+//let onlyOnce = true;
 
 function Coches() {
-  const { isLoading, sendRequest} = useHttp();
+  const {sendRequest} = useHttp();
   const [coches, setCoches] = useState([]);
 
-  const cochesHandler = async () => {
-    const config = {
-      url: "/coches",
-      method: "GET",
-    };
-
-    const respuesta = await sendRequest(config);
-
-    setCoches(respuesta);
-    console.log(respuesta);
-  };
+  useEffect(() => {
+    // if (onlyOnce) {
+       const config = {
+         url: "/coches",
+         method: "GET",
+       };
+ 
+       sendRequest(config).then((respuesta) => {
+        setCoches(respuesta);
+       });
+ 
+       //onlyOnce = false;
+     //}
+   }, [sendRequest]);
 
   return (
     <Container>
@@ -40,11 +42,6 @@ function Coches() {
           </>
       ))}
       </Row>
-      <div>
-        <Button onClick={cochesHandler} variant="success">
-          {isLoading ? "Enviando..." : "Submit"}
-        </Button>
-      </div>
     </Container>
   );
 }

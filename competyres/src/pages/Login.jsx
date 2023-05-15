@@ -8,25 +8,16 @@ import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import useHttp from "../hooks/use-http";
 import "../App.css";
+import Session from "../store/session-context";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-const isNotEmpty = (value) => value.trim() !== "";
+//const isNotEmpty = (value) => value.trim() !== "";
 const isEmail = (value) => value.includes("@");
-const isValidContraseña = (value) => value.trim().length > 8;
+const isValidContraseña = (value) => value.trim().length > 4;
 
 const Login = () => {
-  const { isLoading, error, sendRequest } = useHttp();
-
-  const usuarioHandler = async () => {
-    const config = {
-      url: "/usuario",
-      method: "POST"
-    };
-
-    const respuesta = await sendRequest(config);
-
-    console.log(respuesta);
-  };
+  const { onLogin } = useContext(Session);
 
   const {
     value: valorEmail,
@@ -43,7 +34,7 @@ const Login = () => {
     reset: resetContraseña,
   } = useInput(isValidContraseña);
 
-  let formIsValid = false;
+  let formIsValid = true;
 
   const onClickHandler = (event) => {
     event.preventDefault();
@@ -51,7 +42,7 @@ const Login = () => {
     if (!formIsValid) {
       return;
     }
-    usuarioHandler();
+    onLogin(valorEmail, valorContraseña);
     resetEmail();
     resetContraseña();
   };
@@ -61,64 +52,66 @@ const Login = () => {
       <br />
       <Card style={{ width: "50rem" }}>
         <Card.Body>
-          <Card.Text>
-            <Container>
-              <Row>
-                <Col>
-                  <div>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type="text"
-                      id="email"
-                      value={valorEmail}
-                      onChange={emailChangeHandler}
-                      onBlur={emailBlurHandler}
-                    />
-                    <br />
-                    {errorEnEmail && (
-                      <Alert variant="danger">
-                        Por favor introduzca el email
-                      </Alert>
-                    )}
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <div>
-                    <Form.Label>Contraseña</Form.Label>
-                    <Form.Control
-                      type="password"
-                      id="contraseña"
-                      value={valorContraseña}
-                      onChange={contraseñaChangeHandler}
-                      onBlur={contraseñaBlurHandler}
-                    />
-                    <br />
-                    {errorEnContraseña && (
-                      <Alert variant="danger">
-                        Porfavor introduzca una contraseña valida
-                      </Alert>
-                    )}
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <div>
-                    <Button
-                      onClick={onClickHandler}
-                      variant="success"
-                      disabled={!formIsValid}
-                    >
-                      <Link to="/">{isLoading ? "Enviando..." : "Submit"}</Link>
-                    </Button>
-                  </div>
-                  {error && <Alert variant="danger">{error}</Alert>}
-                </Col>
-              </Row>
-            </Container>
-          </Card.Text>
+          {/* <Card.Text> */}
+          <Container>
+            <Row>
+              <Col>
+                <div>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="text"
+                    id="email"
+                    value={valorEmail}
+                    onChange={emailChangeHandler}
+                    onBlur={emailBlurHandler}
+                  />
+                  <br />
+                  {errorEnEmail && (
+                    <Alert variant="danger">
+                      Por favor introduzca el email
+                    </Alert>
+                  )}
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <div>
+                  <Form.Label>Contraseña</Form.Label>
+                  <Form.Control
+                    type="password"
+                    id="contraseña"
+                    value={valorContraseña}
+                    onChange={contraseñaChangeHandler}
+                    onBlur={contraseñaBlurHandler}
+                  />
+                  <br />
+                  {errorEnContraseña && (
+                    <Alert variant="danger">
+                      Porfavor introduzca una contraseña valida
+                    </Alert>
+                  )}
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <div>
+                  <Button
+                    onClick={onClickHandler}
+                    variant="success"
+                    //disabled={!formIsValid}
+                  >
+                    {" "}
+                    Submit
+                    {/* <Link to="/">{isLoading ? "Enviando..." : "Submit"}</Link> */}
+                  </Button>
+                </div>
+                {/* {error && <Alert variant="danger">{error}</Alert>} */}
+              </Col>
+            </Row>
+          </Container>
+          {/* </Card.Text> */}
         </Card.Body>
       </Card>
       <br />

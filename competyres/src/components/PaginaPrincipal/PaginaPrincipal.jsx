@@ -5,14 +5,14 @@ import Tarjeta from "../Tarjeta/Tarjeta";
 import logo from "../../logo.svg";
 import useHttp from "../../hooks/use-http";
 import React, {useEffect, useState } from "react";
-let onlyOnce = true;
+//let onlyOnce = true;
 
 function PaginaPrincipal() {
   const { sendRequest } = useHttp();
   const [noticias, setNoticias] = useState([]);
 
   useEffect(() => {
-    if (onlyOnce) {
+   // if (onlyOnce) {
       const config = {
         url: "/noticias",
         method: "GET",
@@ -22,8 +22,8 @@ function PaginaPrincipal() {
         setNoticias(respuesta);
       });
 
-      onlyOnce = false;
-    }
+      //onlyOnce = false;
+    //}
   }, [sendRequest]);
 
   return (
