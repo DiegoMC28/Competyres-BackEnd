@@ -1,13 +1,12 @@
 import Container from "react-bootstrap/esm/Container";
-import useInput from "../hooks/use-input";
+import useInput from "../../hooks/use-input";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
-import useHttp from "../hooks/use-http";
-import "../App.css";
+import useHttp from "../../hooks/use-http";
 import { Link } from "react-router-dom";
 
 const isNotEmpty = (value) => value.trim() !== "";
@@ -104,7 +103,6 @@ const Resgistrarse = () => {
 
   return (
     <Form>
-      <br />
       <Card style={{ width: "50rem" }}>
         <Card.Body>
           <Card.Text>
@@ -120,7 +118,6 @@ const Resgistrarse = () => {
                       onChange={nombreChangeHandler}
                       onBlur={nombreBlurHandler}
                     />
-                    <br />
                     {ErrorEnNombre && (
                       <Alert variant="danger">
                         Por favor introduzca un nombre.
@@ -138,7 +135,6 @@ const Resgistrarse = () => {
                       onChange={primerApellidoChangeHandler}
                       onBlur={primerApellidoBlurHandler}
                     />
-                    <br />
                     {ErrorEnPrimerApellido && (
                       <Alert variant="danger">
                         Por favor introduzca el primer apellido
@@ -156,7 +152,6 @@ const Resgistrarse = () => {
                       onChange={edadChangeHandler}
                       onBlur={edadBlurHandler}
                     />
-                    <br />
                     {ErrorEnEdad && (
                       <Alert variant="danger">
                         Por favor introduzca la edad
@@ -176,7 +171,7 @@ const Resgistrarse = () => {
                       onChange={emailChangeHandler}
                       onBlur={emailBlurHandler}
                     />
-                    <br />
+
                     {errorEnEmail && (
                       <Alert variant="danger">
                         Porfavor introduzca un email valido
@@ -194,7 +189,7 @@ const Resgistrarse = () => {
                       onChange={contraseñaChangeHandler}
                       onBlur={contraseñaBlurHandler}
                     />
-                    <br />
+
                     {errorEnContraseña && (
                       <Alert variant="danger">
                         Porfavor introduzca una contraseña valida
@@ -211,9 +206,8 @@ const Resgistrarse = () => {
                       onClick={onClickHandler}
                       variant="success"
                       disabled={!formIsValid}
-                    ><Link to="/">
-                      {isLoading ? "Enviando..." : "Submit"}
-                      </Link>
+                    >
+                      <Link to="/">{isLoading ? "Enviando..." : "Submit"}</Link>
                     </Button>
                   </div>
                   {error && <Alert variant="danger">{error}</Alert>}
@@ -224,7 +218,6 @@ const Resgistrarse = () => {
           </Card.Text>
         </Card.Body>
       </Card>
-      <br />
     </Form>
   );
 };

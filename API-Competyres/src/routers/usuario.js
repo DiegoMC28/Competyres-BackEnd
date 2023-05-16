@@ -35,9 +35,9 @@ router.post('/logout', autentificacion, async (req, res) => {
         })
         await req.usuario.save()
 
-        res.send("Sesion cerrada")
+        res.send({error: false, message:"Sesion cerrada"})
     } catch (e) {
-        res.status(500).send()
+        res.status(500).send({error: true, message:e.message})
     }
 })
 

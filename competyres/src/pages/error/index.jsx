@@ -1,18 +1,18 @@
-import { useRouteError } from 'react-router-dom';
+import { useRouteError } from "react-router-dom";
 
 function ErrorPage() {
   const error = useRouteError();
 
-  let titulo = 'Ha ocurrido un error!';
-  let mensaje = 'Algo ha ido mal!';
+  let titulo = "Ha ocurrido un error!";
+  let mensaje = "Algo ha ido mal!";
 
   if (error.status === 500) {
     mensaje = error.data.message;
   }
 
   if (error.status === 404) {
-    titulo = 'Error 404';
-    mensaje = 'No se encuentra la pagina.';
+    titulo = "Error 404";
+    mensaje = "No se encuentra la pagina.";
   }
 
   return (

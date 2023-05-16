@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import logo from "../logo.svg";
+import logo from "../../resources/logo.svg";
 
-import BarraMenu from "../components/BarraMenu/BarraMenu";
-import Session from "../store/session-context";
+import Menu from "./Menu";
+import Session from "../../context/session-context";
 import { useContext } from "react";
 
 function Layout() {
@@ -13,7 +13,7 @@ function Layout() {
       <div className="fondoOscuro">
         <h1>{userData.nombre}</h1>
         <img alt="Logo de la app" src={logo} className="App-logo"></img>
-        <BarraMenu />
+        <Menu />
         <main>
           <Outlet />
         </main>

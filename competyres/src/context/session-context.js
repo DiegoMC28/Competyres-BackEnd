@@ -9,6 +9,7 @@ const userModel = {
   edad: 0,
   email: "",
   contrasena: "",
+  token: "",
 };
 
 const Session = React.createContext({
@@ -32,14 +33,28 @@ export const SessionProvider = (props) => {
 
     sendRequest(config).then((usuario) => {
       if (!usuario.error) {
-        setUserData({ isLogged: true, ...usuario });
+        setUserData({ isLogged: true, ...usuario, token: token });
       }
     });
   }, []);
 
-  const onLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    setUserData(false);
+  const onLogout = async () => {
+    const token = localStorage.getItem("Sesion");
+
+    const config = {
+      url: "/logout",
+      method: "POST",
+      headers: { Authorization: token },
+    };
+
+    const logoutResponse = await sendRequest(config);
+    const { error, message } = logoutResponse;
+
+    console.log(message);
+
+    localStorage.removeItem("Sesion");
+
+    if (!error) setUserData(userModel);
   };
 
   const onLogin = async (email, password) => {
@@ -57,7 +72,12 @@ export const SessionProvider = (props) => {
 
     localStorage.setItem("Sesion", token);
 
-    if (!error) setUserData({ isLogged: true, ...usuario });
+    if (!error) {
+      setUserData({ isLogged: true, ...usuario, token: token });
+      return { error: false };
+    } else {
+      return { error: true };
+    }
   };
 
   return (
