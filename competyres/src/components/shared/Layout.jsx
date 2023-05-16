@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import logo from "../../resources/logo.svg";
+import logo from "../../resources/LogoCabecera2.png";
 
 import Menu from "./Menu";
 import Session from "../../context/session-context";
@@ -12,7 +12,7 @@ function Layout() {
     <>
       <div className="fondoOscuro">
         <h1>{userData.nombre}</h1>
-        <img alt="Logo de la app" src={logo} className="App-logo"></img>
+        <img alt="Logo de la app" style={{width:"400px", height:"200px"}} src={logo} className="App-logo"></img>
         <Menu />
         <main>
           <Outlet />
