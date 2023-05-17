@@ -6,6 +6,7 @@ import Circuits from "./circuits";
 import Login from "./login";
 import Layout from "../components/shared/Layout";
 import { createBrowserRouter } from "react-router-dom";
+import Profile from "./profile";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "circuits",
         element: <Circuits />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },

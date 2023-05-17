@@ -1,15 +1,16 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import NoticeCard from "../components/noticeCard/NoticeCard";
 import logo from "../resources/logo.svg";
 import useHttp from "../hooks/use-http";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import Session from "../context/session-context";
+import { Link } from "react-router-dom";
 //let onlyOnce = true;
 
 function Main() {
   const { sendRequest } = useHttp();
   const [noticias, setNoticias] = useState([]);
+  const { userData } = useContext(Session);
+  const { isLogged } = userData;
 
   useEffect(() => {
     // if (onlyOnce) {
@@ -27,26 +28,29 @@ function Main() {
   }, [sendRequest]);
 
   return (
-    <Container>
-      {/* <div className="d-flex justify-content-center ">
-        <div>A</div>
-        <div>B</div>
-      </div> */}
+    <div className="d-flex justify-content-center flex-column">
+      <h1>Experiencia de conducción competitiva</h1>
+      <hr />
+      {!isLogged && (
+        <>
+          <p>
+            <Link to={"/singup"}>Registrate</Link> o{" "}
+            <Link to={"/login"}>Inicia sesion</Link> para acceder al servicio de
+            reservas
+          </p>
+          <hr />
+        </>
+      )}
       {noticias.map((noticia) => (
-        <Row key={noticia._id}>
-          <Col></Col>
-          <Col>
-            <NoticeCard
-              title={noticia.titulo}
-              body={noticia.cuerpo}
-              image={logo}
-              date={noticia.fechaPublicacion}
-            ></NoticeCard>{" "}
-          </Col>
-          <Col></Col>
-        </Row>
+        <NoticeCard
+          key={noticia._id}
+          title={noticia.titulo}
+          body={noticia.cuerpo}
+          image={logo}
+          date={noticia.fechaPublicacion}
+        />
       ))}
-    </Container>
+    </div>
   );
 }
 
