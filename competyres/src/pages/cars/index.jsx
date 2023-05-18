@@ -1,16 +1,24 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import CarsCard from "../../components/carsCard/CarsCard";
-import logo from "../../resources/logo.svg";
+import CarsCard from "../../components/CarsCard";
 import useHttp from "../../hooks/use-http";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 //let onlyOnce = true;
 
 function Coches() {
   const { sendRequest } = useHttp();
   const [coches, setCoches] = useState([]);
 
+  const navigate = useNavigate();
+
+  const detailsHandler = (id) => {
+   
+
+      navigate(id);
+   
+  };
   useEffect(() => {
     // if (onlyOnce) {
     const config = {
@@ -33,12 +41,9 @@ function Coches() {
           <>
             <Col>
               <CarsCard
-                team={coche.escuderia}
-                model={coche.modelo}
-                category={coche.categoria}
-                lastYearOfCompetition={coche.ultimoAñoDeCompeticion}
-                image={logo}
-              ></CarsCard>{" "}
+                car={coche}
+                detailsHandler={detailsHandler}
+              ></CarsCard>
             </Col>
           </>
         ))}

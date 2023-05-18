@@ -25,6 +25,11 @@ const Circuito = mongoose.model('Circuito', {
         type: Number,
         required: true,
         default: 10
+    },
+    imagen: {
+        type: String,
+        required: false,
+        default: ''
     }
 })
 

@@ -1,0 +1,28 @@
+.navBar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: rgb(150, 0, 0);
+  & a /*[href]*/ {
+    text-decoration: none;
+    font-size: larger;
+    color: black;
+    font-weight: 900;
+    &:hover {
+      color: white;
+    }
+  }
+}
+.navBrand {
+  flex: 1;
+}
+.navTabs {
+  display: flex;
+  justify-content: space-evenly;
+  flex: 2;
+}
+.navProfile {
+  display: flex;
+  justify-content: space-around;
+  flex: 2;
+}

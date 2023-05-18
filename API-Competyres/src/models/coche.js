@@ -37,6 +37,11 @@ const Coche = mongoose.model('Coche', {
     disponible: {
         type: Boolean,
         default: false,
+    },
+    imagen: {
+        type: String,
+        required: false,
+        default: ''
     }
 })
 

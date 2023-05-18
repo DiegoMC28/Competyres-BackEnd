@@ -25,7 +25,7 @@ router.get('/circuitos', async (req, res) => {
 
 })
 
-router.get('/circuito/:id', autentificacion, async (req, res) => {
+router.get('/circuito/:id', async (req, res) => {
     const _id = req.params.id
     try {
         const circuito = await Circuito.findById(_id)

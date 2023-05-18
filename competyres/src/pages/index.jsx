@@ -1,4 +1,4 @@
-import NoticeCard from "../components/noticeCard/NoticeCard";
+import NoticeCard from "../components/NoticeCard";
 import logo from "../resources/logo.svg";
 import useHttp from "../hooks/use-http";
 import React, { useContext, useEffect, useState } from "react";

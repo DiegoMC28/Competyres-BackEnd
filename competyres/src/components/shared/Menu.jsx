@@ -1,18 +1,18 @@
 import { useContext } from "react";
 import Session from "../../context/session-context";
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import Logo from "../../resources/LogoCabecera2.png";
+import CSS from "./Menu.module.css";
 
 function Menu() {
   const { userData } = useContext(Session);
   const { isLogged } = userData;
   return (
-    <Navbar bg="danger" variant="dark" expand="lg">
-      <NavLink to="/">
-        <Navbar.Brand>
+    <Navbar className={CSS.navBar}  expand="lg">
+      <NavLink to="/" className={CSS.navBrand}>
+        <Navbar.Brand >
           <img
             alt="Logo de la app"
             style={{ width: "100px", height: "50px" }}
@@ -21,11 +21,15 @@ function Menu() {
           ></img>
         </Navbar.Brand>
       </NavLink>
-      <Nav className="m-auto">
-        <NavLink to="/cars">Coches</NavLink>
-        <NavLink to="/circuits">Circuitos</NavLink>
+      <Nav className={CSS.navTabs}>
+        <div>
+          <NavLink to="/cars">Coches</NavLink>
+        </div>
+        <div>
+          <NavLink to="/circuits">Circuitos</NavLink>
+        </div>
       </Nav>
-      <Nav className="m-auto">
+      <Nav className={CSS.navProfile}>
         {isLogged && <NavLink to="/profile">Perfil</NavLink>}
       </Nav>
     </Navbar>

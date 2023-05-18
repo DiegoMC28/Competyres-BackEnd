@@ -1,15 +1,21 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import CircuitsCard from "../../components/circuitsCard/CircuitsCard";
-import logo from "../../resources/logo.svg";
+import CircuitsCard from "../../components/CircuitsCard";
 import React, { useEffect, useState } from "react";
 import useHttp from "../../hooks/use-http";
+import { useNavigate } from "react-router-dom";
 //let onlyOnce = true;
 
 function Circuit() {
   const { sendRequest } = useHttp();
   const [circuitos, setCircuitos] = useState([]);
+
+  const navigate = useNavigate();
+
+  const detailsHandler = (id) => {
+    navigate(id);
+  };
 
   useEffect(() => {
     // if (onlyOnce) {
@@ -32,10 +38,9 @@ function Circuit() {
         {circuitos.map((circuito) => (
           <Col>
             <CircuitsCard
-              name={circuito.nombre}
-              location={circuito.ubicacion}
-              image={logo}
-            ></CircuitsCard>{" "}
+              circuit={circuito}
+              detailsHandler={detailsHandler}
+            ></CircuitsCard>
           </Col>
         ))}
       </Row>

@@ -25,7 +25,7 @@ router.get('/coches',async (req, res)=>{
 
 })
 
-router.get('/coche/:id', autentificacion,async (req, res)=>{
+router.get('/coche/:id',async (req, res)=>{
     const _id = req.params.id
     try{
         const coche = await Coche.findById(_id)

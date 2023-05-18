@@ -1,20 +1,7 @@
-import { useContext } from "react";
 import Card from "react-bootstrap/Card";
-import Session from "../../context/session-context";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 
 function ProfileCard(props) {
-  const { onLogout } = useContext(Session);
-
-  const navigate = useNavigate();
-
-  const logoutHandler = () => {
-    onLogout();
-
-    navigate("/");
-  };
-
   return (
     <Card style={{ width: "50rem" }}>
       <Card.Header>
@@ -40,7 +27,7 @@ function ProfileCard(props) {
           </Row>
         </Container>
       </Card.Body>
-      <Button onClick={logoutHandler} variant="success">
+      <Button onClick={props.logoutHandler} variant="success">
         Logout
       </Button>
     </Card>
