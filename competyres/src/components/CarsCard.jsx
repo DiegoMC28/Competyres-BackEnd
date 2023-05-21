@@ -1,29 +1,25 @@
 import Card from "react-bootstrap/Card";
-
-import { Button } from "react-bootstrap";
+import CSS from "./CarsCard.module.css";
 
 function CarsCard(props) {
   const { _id, escuderia, modelo, categoria, ultimoAñoDeCompeticion, imagen } =
     props.car;
-  const {detailsHandler} = props;
+  const { detailsHandler } = props;
   const onClickHandler = () => {
     detailsHandler(_id);
   };
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card onClick={onClickHandler} className={CSS.cardStyle}>
       <Card.Body>
         <Card.Header>
-          <Card.Img variant="top" style={{ width: "18rem" }} src={imagen} />
+          <Card.Img variant="top" src={imagen} />
         </Card.Header>
         <Card.Title>{escuderia + " " + modelo}</Card.Title>
         <Card.Subtitle>{"Categoria: " + categoria}</Card.Subtitle>
         <Card.Subtitle>
           {"Ultimo año de competicion: " + ultimoAñoDeCompeticion}
         </Card.Subtitle>
-        <Button key={_id} onClick={onClickHandler} variant="success">
-          Ver mas
-        </Button>
       </Card.Body>
     </Card>
   );

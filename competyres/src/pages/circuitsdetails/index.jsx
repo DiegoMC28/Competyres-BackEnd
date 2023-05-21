@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import useHttp from "../../hooks/use-http";
-import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import CircuitsDetailsCard from "../../components/CircuitsDetailsCard";
 import Session from "../../context/session-context";
+import CSS from "./CircuitsDetails.module.css";
 
 const CircuitDetails = () => {
   const params = useParams();
@@ -29,13 +29,9 @@ const CircuitDetails = () => {
   }, [sendRequest, id]);
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <CircuitsDetailsCard circuit={circuito} isLogged={isLogged} />
-        </Col>
-      </Row>
-    </Container>
+    <div className={CSS.page}>
+      <CircuitsDetailsCard circuit={circuito} isLogged={isLogged} />
+    </div>
   );
 };
 

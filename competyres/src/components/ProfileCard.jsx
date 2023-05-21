@@ -1,5 +1,5 @@
 import Card from "react-bootstrap/Card";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 function ProfileCard(props) {
   return (
@@ -8,24 +8,13 @@ function ProfileCard(props) {
         <h1>Tu Perfil</h1>
       </Card.Header>
       <Card.Body>
-        <Container>
-          <Row>
-            <Col>
-              <h4>Nombre: {props.Name}</h4>
-            </Col>
-            <Col>
-              <h4>Apellido: {props.LastName}</h4>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <h4>Edad: {props.Age}</h4>
-            </Col>
-            <Col>
-              <h4>Email: {props.Email}</h4>
-            </Col>
-          </Row>
-        </Container>
+        <h4>Nombre: {props.Name}</h4>
+
+        <h4>Apellido: {props.LastName}</h4>
+
+        <h4>Edad: {props.Age}</h4>
+
+        <h4>Email: {props.Email}</h4>
       </Card.Body>
       <Button onClick={props.logoutHandler} variant="success">
         Logout

@@ -12,7 +12,7 @@ function CircuitsCard(props) {
     <Card style={{ width: "18rem" }}>
       <Card.Body>
         <Card.Header>
-          <Card.Img variant="top" style={{ width: "18rem" }} src={imagen} />
+          <Card.Img variant="top" src={imagen} />
         </Card.Header>
         <Card.Title>{"Nombre: " + nombre}</Card.Title>
         <Card.Subtitle>{"Ubicacion: " + ubicacion}</Card.Subtitle>

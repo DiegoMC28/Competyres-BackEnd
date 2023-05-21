@@ -1,10 +1,8 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import CircuitsCard from "../../components/CircuitsCard";
 import React, { useEffect, useState } from "react";
 import useHttp from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
+import CSS from "./Circuits.module.css";
 //let onlyOnce = true;
 
 function Circuit() {
@@ -33,18 +31,14 @@ function Circuit() {
   }, [sendRequest]);
 
   return (
-    <Container>
-      <Row>
-        {circuitos.map((circuito) => (
-          <Col>
-            <CircuitsCard
-              circuit={circuito}
-              detailsHandler={detailsHandler}
-            ></CircuitsCard>
-          </Col>
-        ))}
-      </Row>
-    </Container>
+    <div className={CSS.page}>
+      {circuitos.map((circuito) => (
+        <CircuitsCard
+          circuit={circuito}
+          detailsHandler={detailsHandler}
+        ></CircuitsCard>
+      ))}
+    </div>
   );
 }
 

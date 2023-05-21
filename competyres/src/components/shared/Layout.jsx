@@ -1,19 +1,21 @@
 import { Outlet } from "react-router-dom";
 import logo from "../../resources/LogoCabecera2.png";
-
+import CSS from "./Layout.module.css";
 import Menu from "./Menu";
 
 function Layout() {
   return (
     <>
-      <img
-        alt="Logo de la app"
-        style={{ width: "400px", height: "200px" }}
-        src={logo}
-        className="App-logo"
-      ></img>
+      <div className={CSS.fotoFondo}>
+        <img
+          alt="Logo de la app"
+          style={{ width: "400px", height: "200px" }}
+          src={logo}
+          className="App-logo"
+        ></img>
+      </div>
       <Menu />
-      <main>
+      <main className={CSS.main}>
         <Outlet />
       </main>
     </>

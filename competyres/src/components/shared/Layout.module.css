@@ -1,0 +1,11 @@
+.fotoFondo{
+    background-image: url("../../resources/desfile-autos-deportivos-o-carrera-carretera.jpg");
+    background-size: cover;
+    background-position: center;
+    
+}
+/* .main{
+    overflow: auto;
+    height: 70vh;
+    overflow-y: scroll;
+} */

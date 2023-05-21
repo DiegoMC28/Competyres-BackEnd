@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import CarsDetailsCard from "../../components/CarsDetailsCard";
 import useHttp from "../../hooks/use-http";
-import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Session from "../../context/session-context";
+import CSS from "./CarsDetails.module.css";
 
 const CarsDetails = () => {
   const params = useParams();
@@ -29,13 +29,9 @@ const CarsDetails = () => {
   }, [sendRequest, id]);
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <CarsDetailsCard car={coche} isLogged={isLogged} />
-        </Col>
-      </Row>
-    </Container>
+    <div className={CSS.page}>
+      <CarsDetailsCard car={coche} isLogged={isLogged} />
+    </div>
   );
 };
 

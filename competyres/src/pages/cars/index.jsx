@@ -1,23 +1,17 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import CarsCard from "../../components/CarsCard";
 import useHttp from "../../hooks/use-http";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import CSS from "./Cars.module.css";
 //let onlyOnce = true;
 
 function Coches() {
   const { sendRequest } = useHttp();
   const [coches, setCoches] = useState([]);
-
   const navigate = useNavigate();
 
   const detailsHandler = (id) => {
-   
-
-      navigate(id);
-   
+    navigate(id);
   };
   useEffect(() => {
     // if (onlyOnce) {
@@ -35,20 +29,11 @@ function Coches() {
   }, [sendRequest]);
 
   return (
-    <Container>
-      <Row>
-        {coches.map((coche) => (
-          <>
-            <Col>
-              <CarsCard
-                car={coche}
-                detailsHandler={detailsHandler}
-              ></CarsCard>
-            </Col>
-          </>
-        ))}
-      </Row>
-    </Container>
+    <div className={CSS.page}>
+      {coches.map((coche) => (
+        <CarsCard car={coche} detailsHandler={detailsHandler}></CarsCard>
+      ))}
+    </div>
   );
 }
 

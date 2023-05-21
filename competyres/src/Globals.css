@@ -1,13 +1,24 @@
-body{
+body {
   color: white;
-  background-color: #303030;
+  background-color: #181818;
   min-height: 100vh;
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
-main{
-  display: flex; 
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #555;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #222;
+}
+main {
+  display: flex;
   justify-content: center;
 }
 
@@ -16,12 +27,9 @@ main{
 }
 
 .App-logo {
-  filter: drop-shadow(0px 0px 3px black);
-  height: 26vmin;
+  filter: drop-shadow(0px 0px 10px rgb(255, 255, 255));
   pointer-events: none;
 }
-
-
 
 .App-header {
   background-color: #1b1b1b;
@@ -36,13 +44,4 @@ main{
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
