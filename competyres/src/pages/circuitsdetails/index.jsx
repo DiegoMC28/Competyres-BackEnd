@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import useHttp from "../../hooks/use-http";
 import { useParams } from "react-router-dom";
-import CircuitsDetailsCard from "../../components/CircuitsDetailsCard";
+import CircuitsDetails from "../../components/CircuitsDetails";
 import Session from "../../context/session-context";
 import CSS from "./CircuitsDetails.module.css";
 
@@ -30,7 +30,7 @@ const CircuitDetails = () => {
 
   return (
     <div className={CSS.page}>
-      <CircuitsDetailsCard circuit={circuito} isLogged={isLogged} />
+      <CircuitsDetails circuit={circuito} isLogged={isLogged} />
     </div>
   );
 };

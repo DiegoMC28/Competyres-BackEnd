@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import CarsDetailsCard from "../../components/CarsDetailsCard";
+import CarsDetailsComponent from "../../components/CarsDetails";
 import useHttp from "../../hooks/use-http";
 import { useParams } from "react-router-dom";
 import Session from "../../context/session-context";
@@ -30,7 +30,7 @@ const CarsDetails = () => {
 
   return (
     <div className={CSS.page}>
-      <CarsDetailsCard car={coche} isLogged={isLogged} />
+      <CarsDetailsComponent car={coche} isLogged={isLogged} />
     </div>
   );
 };

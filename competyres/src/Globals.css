@@ -2,7 +2,6 @@ body {
   color: white;
   background-color: #181818;
   min-height: 100vh;
-  text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 ::-webkit-scrollbar {
@@ -22,7 +21,7 @@ main {
   justify-content: center;
 }
 
-.App {
+.centrado {
   text-align: center;
 }
 

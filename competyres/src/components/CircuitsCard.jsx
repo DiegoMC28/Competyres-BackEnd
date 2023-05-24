@@ -1,5 +1,5 @@
 import Card from "react-bootstrap/Card";
-import { Button } from "react-bootstrap";
+import CSS from "./Card.module.css";
 
 function CircuitsCard(props) {
   const { _id, nombre, ubicacion, imagen } = props.circuit;
@@ -9,16 +9,13 @@ function CircuitsCard(props) {
   };
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card onClick={onClickHandler} className={CSS.cardStyle}>
       <Card.Body>
         <Card.Header>
           <Card.Img variant="top" src={imagen} />
         </Card.Header>
         <Card.Title>{"Nombre: " + nombre}</Card.Title>
         <Card.Subtitle>{"Ubicacion: " + ubicacion}</Card.Subtitle>
-        <Button onClick={onClickHandler} variant="success">
-          Ver mas
-        </Button>
       </Card.Body>
     </Card>
   );

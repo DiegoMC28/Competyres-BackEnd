@@ -1,5 +1,5 @@
 import Card from "react-bootstrap/Card";
-import CSS from "./CarsCard.module.css";
+import CSS from "./Card.module.css";
 
 function CarsCard(props) {
   const { _id, escuderia, modelo, categoria, ultimoAñoDeCompeticion, imagen } =

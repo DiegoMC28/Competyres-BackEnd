@@ -2,7 +2,8 @@
     background-image: url("../../resources/desfile-autos-deportivos-o-carrera-carretera.jpg");
     background-size: cover;
     background-position: center;
-    
+    display: flex;
+    justify-content: center;
 }
 /* .main{
     overflow: auto;

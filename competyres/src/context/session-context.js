@@ -9,6 +9,7 @@ const userModel = {
   edad: 0,
   email: "",
   contrasena: "",
+  alquileres: [],
   token: "",
 };
 

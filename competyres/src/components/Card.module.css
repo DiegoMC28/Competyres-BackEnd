@@ -9,3 +9,20 @@
   width: 18rem;
   transition: 0.5s ease all;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+}
+
+.logoutButton{
+  width: 150px;
+}
+
+.alignStyle{
+  margin-top: 100px;
+  align-items: center;
+}
+
+

@@ -49,6 +49,10 @@ const router = createBrowserRouter([
         path: "profile",
         element: <Profile />,
       },
+      {
+        path: "bookings",
+        element: <Profile />,
+      },
     ],
   },
 ]);
