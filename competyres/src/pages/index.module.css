@@ -1,0 +1,13 @@
+.page {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 100px;
+  }
+  @media screen and (max-width: 1360px) {
+    .page {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }

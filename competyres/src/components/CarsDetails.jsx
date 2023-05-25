@@ -3,6 +3,7 @@ import CSS from "./CarsDetails.module.css";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { useState } from "react";
+import useBooking from "../hooks/useBooking";
 
 function CarsDetails(props) {
   const { car, isLogged } = props;
@@ -17,6 +18,11 @@ function CarsDetails(props) {
     imagen,
   } = car;
   const [open, setOpen] = useState(false);
+  const { addCar } = useBooking();
+
+  const onClickHandler = () => {
+    addCar(car);
+  };
 
   const onViewHandler = () => {
     setOpen(true);
@@ -27,8 +33,12 @@ function CarsDetails(props) {
   };
 
   return (
-    <div className={CSS.body}> 
-      <img src={imagen} alt={escuderia + " " + modelo} onClick={onViewHandler} />
+    <div className={CSS.body}>
+      <img
+        src={imagen}
+        alt={escuderia + " " + modelo}
+        onClick={onViewHandler}
+      />
       <Lightbox open={open} close={onCloseHandler} slides={[{ src: imagen }]} />
       <style jsx global>{`
         .yarl__slide_image {
@@ -48,7 +58,11 @@ function CarsDetails(props) {
         <h4>Descripcion</h4>
         <p>{descripcion}</p>
         {isLogged && disponible && (
-          <Button className={CSS.button} variant="success">
+          <Button
+            className={CSS.button}
+            onClick={onClickHandler}
+            variant="success"
+          >
             Añadir a la reserva
           </Button>
         )}

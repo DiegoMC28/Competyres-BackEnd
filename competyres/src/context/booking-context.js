@@ -1,45 +1,67 @@
-import React, { useState, useEffect } from "react";
-import useHttp from "../hooks/use-http";
+import React, { useState } from "react";
 
 const bookingModel = {
-  _id: "",
-  coche: {},
-  circuito: {},
+  coche: undefined,
+  circuito: undefined,
   fecha: "",
-  vueltas: 0,
+  vueltas: 1,
   precio: 0,
 };
 
 const Booking = React.createContext({
   bookingData: bookingModel,
+  addCar: (car) => {},
+  clearCar: () => {},
+  addCircuit: (circuit) => {},
+  clearCircuit: () => {},
+  editLaps: (laps) => {},
 });
 
 export const BookingProvider = (props) => {
   const [bookingData, setBookingData] = useState(bookingModel);
-  const { sendRequest } = useHttp();
 
-  useEffect(() => {
-    const token = localStorage.getItem("Sesion");
-
-    const config = {
-      url: "/alquileres",
-      method: "GET",
-      headers: { Authorization: token },
-    };
-
-    sendRequest(config).then((alquileres) => {
-      if (!alquileres.error) {
-        setBookingData({ ...alquileres, token: token });
-      }
+  const addCar = (car) => {
+    setBookingData((prevState) => {
+      return { ...prevState, coche: car };
     });
-  }, []);
+  };
+
+  const clearCar = () => {
+    setBookingData((prevState) => {
+      return { ...prevState, coche: bookingModel.coche };
+    });
+  };
+
+  const addCircuit = (circuit) => {
+    setBookingData((prevState) => {
+      return { ...prevState, circuito: circuit };
+    });
+  };
+
+  const clearCircuit = () => {
+    setBookingData((prevState) => {
+      return { ...prevState, circuito: bookingModel.circuito };
+    });
+  };
+
+  const editLaps = (laps) => {
+    setBookingData((prevState) => {
+      return { ...prevState, vueltas: laps };
+    });
+  };
 
   
+  let price = bookingData.coche?.precio + bookingData?.vueltas * 50;
 
   return (
     <Booking.Provider
       value={{
-        bookingData: bookingData,
+        bookingData: { ...bookingData, precio: price },
+        addCar: addCar,
+        clearCar: clearCar,
+        addCircuit: addCircuit,
+        clearCircuit: clearCircuit,
+        editLaps: editLaps,
       }}
     >
       {props.children}
@@ -47,4 +69,4 @@ export const BookingProvider = (props) => {
   );
 };
 
-export default Session;
+export default Booking;

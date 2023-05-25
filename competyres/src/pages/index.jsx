@@ -4,6 +4,7 @@ import useHttp from "../hooks/use-http";
 import React, { useContext, useEffect, useState } from "react";
 import Session from "../context/session-context";
 import { Link } from "react-router-dom";
+import CSS from "./index.module.css";
 //let onlyOnce = true;
 
 function Main() {
@@ -31,6 +32,7 @@ function Main() {
     <div className="d-flex justify-content-center flex-column">
       <h1>Experiencia de conducción competitiva</h1>
       <hr />
+
       {!isLogged && (
         <>
           <p>
@@ -41,15 +43,17 @@ function Main() {
           <hr />
         </>
       )}
-      {noticias.map((noticia) => (
-        <NoticeCard
-          key={noticia._id}
-          title={noticia.titulo}
-          body={noticia.cuerpo}
-          image={logo}
-          date={noticia.fechaPublicacion}
-        />
-      ))}
+      <div className={CSS.page}>
+        {noticias.map((noticia) => (
+          <NoticeCard
+            key={noticia._id}
+            title={noticia.titulo}
+            body={noticia.cuerpo}
+            image={logo}
+            date={noticia.fechaPublicacion}
+          />
+        ))}
+      </div>
     </div>
   );
 }

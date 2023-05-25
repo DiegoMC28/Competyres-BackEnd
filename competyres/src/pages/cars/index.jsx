@@ -8,10 +8,11 @@ import CSS from "./Cars.module.css";
 function Coches() {
   const { sendRequest } = useHttp();
   const [coches, setCoches] = useState([]);
+  // const [filtro, setFiltro] = useState("");
   const navigate = useNavigate();
 
-  const detailsHandler = (id) => {
-    navigate(id);
+  const onClickHandler = (car) => {
+    navigate(car._id);
   };
   useEffect(() => {
     // if (onlyOnce) {
@@ -28,11 +29,25 @@ function Coches() {
     //}
   }, [sendRequest]);
 
+  // const onKeyDownHandler = (e) => {
+  //   if (e.keyCode === 13) {
+
+  //     setFiltro(e.target.value.toString());
+
+  //     console.log(filtro)
+  //     setCoches(coches.filter((coche) => coche.modelo === filtro.toString()));
+
+  //   }
+  // };
+
   return (
-    <div className={CSS.page}>
-      {coches.map((coche) => (
-        <CarsCard car={coche} detailsHandler={detailsHandler}></CarsCard>
-      ))}
+    <div>
+      {/* <input onKeyDown={onKeyDownHandler}></input> */}
+      <div className={CSS.page}>
+        {coches.map((coche) => (
+          <CarsCard car={coche} onClick={onClickHandler}></CarsCard>
+        ))}
+      </div>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import Login from "./login";
 import Layout from "../components/shared/Layout";
 import { createBrowserRouter } from "react-router-dom";
 import Profile from "./profile";
+import Bookings from "./bookings";
 import CarsDetails from "./carsdetails";
 import CircuitDetails from "./circuitsdetails";
 
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: "bookings",
-        element: <Profile />,
+        element: <Bookings />,
       },
     ],
   },

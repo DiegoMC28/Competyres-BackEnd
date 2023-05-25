@@ -1,18 +1,22 @@
-import Card from "react-bootstrap/Card";
 import Moment from "react-moment";
+import Logo from "../resources/LogoCabecera2.png";
+import CSS from "./NoticeCard.module.css";
+
 function NoticeCard(props) {
   return (
-    <Card style={{ width: "50rem" }}>
-      <Card.Body>
-        <Card.Title>{props.title}</Card.Title>
-        <Card.Text>{props.body}</Card.Text>
-        <Card.Img variant="top" style={{ width: "18rem" }} src={props.image} />
-      </Card.Body>
-      <Card.Footer>
+    <div className={CSS.body}>
+      <div className={CSS.centrado}>
+      <img src={Logo} />
+      </div>
+      <h1>{props.title}</h1>
+      <p>{props.body}</p>
+      <hr />
+      <p className={CSS.fecha}>
         Publicado el dia <Moment format="YYYY/MM/DD">{props.date}</Moment> a las{" "}
         <Moment format="hh:mm">{props.date}</Moment>
-      </Card.Footer>
-    </Card>
+      </p>
+      <hr />
+    </div>
   );
 }
 

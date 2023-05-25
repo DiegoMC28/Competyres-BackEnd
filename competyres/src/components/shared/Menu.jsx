@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../resources/LogoCabecera2.png";
 import CSS from "./Menu.module.css";
 import icono from "../../resources/user-icon.webp";
+import iconoBandera from "../../resources/flag-icon.webp";
 
 function Menu() {
   const { userData } = useContext(Session);
@@ -30,9 +31,14 @@ function Menu() {
       </Nav>
       <Nav className={CSS.navProfile}>
         {isLogged && (
-          <NavLink to="/profile">
-            <img src={icono}></img>
-          </NavLink>
+          <div className={CSS.navProfile}>
+            <NavLink to="/bookings">
+              <img alt="ver reserva" src={iconoBandera}></img>
+            </NavLink>
+            <NavLink  to="/profile">
+              <img alt="ver perfil" src={icono}></img>
+            </NavLink>
+          </div>
         )}
       </Nav>
     </Navbar>

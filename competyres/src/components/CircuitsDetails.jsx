@@ -3,12 +3,18 @@ import CSS from "./CircuitsDetails.module.css";
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import useBooking from "../hooks/useBooking";
 
 function CircuitsDetailsCard(props) {
   const { circuit, isLogged } = props;
   const { nombre, ubicacion, extension, descripcion, capacidadCoches, imagen } =
     circuit;
   const [open, setOpen] = useState(false);
+  const { addCircuit } = useBooking();
+
+  const onClickHandler = () => {
+    addCircuit(circuit);
+  };
 
   const onViewHandler = () => {
     setOpen(true);
@@ -37,7 +43,11 @@ function CircuitsDetailsCard(props) {
         <h4>Descripcion</h4>
         <p>{descripcion}</p>
         {isLogged && capacidadCoches !== 0 && (
-          <Button className={CSS.button} variant="success">
+          <Button
+            className={CSS.button}
+            onClick={onClickHandler}
+            variant="success"
+          >
             Añadir a la reserva
           </Button>
         )}
