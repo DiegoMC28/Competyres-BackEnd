@@ -11,8 +11,8 @@ function Circuit() {
 
   const navigate = useNavigate();
 
-  const detailsHandler = (id) => {
-    navigate(id);
+  const onClickHandler = (circuit) => {
+    navigate(circuit._id);
   };
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function Circuit() {
       {circuitos.map((circuito) => (
         <CircuitsCard
           circuit={circuito}
-          detailsHandler={detailsHandler}
+          onClick={onClickHandler}
         ></CircuitsCard>
       ))}
     </div>

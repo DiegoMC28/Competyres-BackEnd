@@ -29,16 +29,6 @@ function Coches() {
     //}
   }, [sendRequest]);
 
-  // const onKeyDownHandler = (e) => {
-  //   if (e.keyCode === 13) {
-
-  //     setFiltro(e.target.value.toString());
-
-  //     console.log(filtro)
-  //     setCoches(coches.filter((coche) => coche.modelo === filtro.toString()));
-
-  //   }
-  // };
 
   return (
     <div>

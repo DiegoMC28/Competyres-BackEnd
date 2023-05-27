@@ -9,12 +9,20 @@ const useHttp = () => {
     setIsLoading(true);
     setError(null);
     try {
+      let headers = { "Content-Type": "application/json" };
+      if (requestConfig.headers) {
+        headers = {
+          "Content-Type": "application/json",
+          ...requestConfig.headers,
+        };
+      }
+      const body = requestConfig.body
+        ? JSON.stringify(requestConfig.body)
+        : null;
       const response = await fetch(URL + requestConfig.url, {
         method: requestConfig.method || "GET",
-        headers: requestConfig.headers || {
-          "Content-Type": "application/json",
-        },
-        body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
+        headers: headers,
+        body: body,
       });
 
       if (!response.ok) {
@@ -27,7 +35,7 @@ const useHttp = () => {
     } catch (err) {
       setError(err.message || "Something went wrong!");
       setIsLoading(false);
-      return { error: true };
+      return { error: true, message: err.message };
     }
   }, []);
 

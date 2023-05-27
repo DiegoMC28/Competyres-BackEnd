@@ -4,6 +4,7 @@ import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { useState } from "react";
 import useBooking from "../hooks/useBooking";
+import { useNavigate } from "react-router-dom";
 
 function CarsDetails(props) {
   const { car, isLogged } = props;
@@ -19,9 +20,11 @@ function CarsDetails(props) {
   } = car;
   const [open, setOpen] = useState(false);
   const { addCar } = useBooking();
+  const navigate = useNavigate();
 
   const onClickHandler = () => {
     addCar(car);
+    navigate("/bookings");
   };
 
   const onViewHandler = () => {

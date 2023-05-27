@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import useHttp from "../hooks/use-http";
 
 const bookingModel = {
   coche: undefined,
   circuito: undefined,
-  fecha: "",
+  fecha: "2023-04-11",
   vueltas: 1,
   precio: 0,
 };
@@ -15,11 +16,13 @@ const Booking = React.createContext({
   addCircuit: (circuit) => {},
   clearCircuit: () => {},
   editLaps: (laps) => {},
+  doBooking: (token) => {},
+  editDate: (date) => {},
 });
 
 export const BookingProvider = (props) => {
   const [bookingData, setBookingData] = useState(bookingModel);
-
+  const { sendRequest } = useHttp();
   const addCar = (car) => {
     setBookingData((prevState) => {
       return { ...prevState, coche: car };
@@ -45,23 +48,52 @@ export const BookingProvider = (props) => {
   };
 
   const editLaps = (laps) => {
+    let price =
+      bookingData.coche?.precio +
+      bookingData?.vueltas * bookingData.circuito?.precioPorVuelta;
+
     setBookingData((prevState) => {
-      return { ...prevState, vueltas: laps };
+      return { ...prevState, vueltas: laps, precio: price };
     });
   };
 
-  
-  let price = bookingData.coche?.precio + bookingData?.vueltas * 50;
+  const editDate = (date) => {
+    setBookingData((prevState) => {
+      return { ...prevState, fecha: date };
+    });
+  };
+
+  const doBooking = async (token) => {
+    const { coche, circuito, fecha, precio, vueltas } = bookingData;
+    const config = {
+      url: "/alquiler",
+      method: "POST",
+      headers: { Authorization: token },
+      body: {
+        coche: coche._id,
+        circuito: circuito._id,
+        fecha: fecha,
+        vueltas: vueltas,
+        precio: precio,
+      },
+    };
+
+    const respuesta = await sendRequest(config);
+
+    console.log(respuesta);
+  };
 
   return (
     <Booking.Provider
       value={{
-        bookingData: { ...bookingData, precio: price },
+        bookingData: { ...bookingData },
         addCar: addCar,
         clearCar: clearCar,
         addCircuit: addCircuit,
         clearCircuit: clearCircuit,
         editLaps: editLaps,
+        doBooking: doBooking,
+        editDate: editDate,
       }}
     >
       {props.children}

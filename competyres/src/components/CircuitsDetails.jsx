@@ -4,9 +4,11 @@ import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import useBooking from "../hooks/useBooking";
+import { useNavigate } from "react-router-dom";
 
 function CircuitsDetailsCard(props) {
   const { circuit, isLogged } = props;
+  const navigate = useNavigate();
   const { nombre, ubicacion, extension, descripcion, capacidadCoches, imagen } =
     circuit;
   const [open, setOpen] = useState(false);
@@ -14,6 +16,7 @@ function CircuitsDetailsCard(props) {
 
   const onClickHandler = () => {
     addCircuit(circuit);
+    navigate("/bookings");
   };
 
   const onViewHandler = () => {

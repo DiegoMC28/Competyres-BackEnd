@@ -26,6 +26,11 @@ const Circuito = mongoose.model('Circuito', {
         required: true,
         default: 10
     },
+    precioPorVuelta: {
+        type: Number,
+        required: true,
+        default: 50
+    },
     imagen: {
         type: String,
         required: false,

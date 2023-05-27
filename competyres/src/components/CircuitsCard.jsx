@@ -2,20 +2,29 @@ import Card from "react-bootstrap/Card";
 import CSS from "./Card.module.css";
 
 function CircuitsCard(props) {
-  const { _id, nombre, ubicacion, imagen } = props.circuit;
-  const { detailsHandler } = props;
+  const { nombre, ubicacion, imagen, precioPorVuelta } = props.circuit ?? {};
+  const { onClick } = props;
   const onClickHandler = () => {
-    detailsHandler(_id);
+    onClick(props.circuit);
   };
 
   return (
     <Card onClick={onClickHandler} className={CSS.cardStyle}>
       <Card.Body>
-        <Card.Header>
-          <Card.Img variant="top" src={imagen} />
-        </Card.Header>
-        <Card.Title>{"Nombre: " + nombre}</Card.Title>
-        <Card.Subtitle>{"Ubicacion: " + ubicacion}</Card.Subtitle>
+        {props.circuit ? (
+          <>
+            <Card.Header>
+              <Card.Img variant="top" src={imagen} />
+            </Card.Header>
+            <Card.Title>{"Nombre: " + nombre}</Card.Title>
+            <Card.Subtitle>{"Ubicacion: " + ubicacion}</Card.Subtitle>
+            <Card.Subtitle>{"Precio por vuelta: " + precioPorVuelta}</Card.Subtitle>
+          </>
+        ) : (
+          <>
+            <h1>Elije circuito</h1>
+          </>
+        )}
       </Card.Body>
     </Card>
   );
