@@ -1,6 +1,7 @@
 import CSS from "./Profile.module.css";
 import imagenLogout from "../resources/exit-icon.webp";
 
+
 function Profile(props) {
   return (
     <div className={CSS.body}>

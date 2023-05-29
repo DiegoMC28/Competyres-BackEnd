@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useHttp from "../hooks/use-http";
 
 const bookingModel = {
+  _id: "",
   coche: undefined,
   circuito: undefined,
   fecha: "2023-04-11",
@@ -80,7 +81,7 @@ export const BookingProvider = (props) => {
 
     const respuesta = await sendRequest(config);
 
-    console.log(respuesta);
+    return respuesta;
   };
 
   return (

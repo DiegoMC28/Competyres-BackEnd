@@ -1,9 +1,22 @@
 import CSS from "./Booking.module.css";
 import Moment from "react-moment";
+import { Button } from "react-bootstrap";
+import { useContext } from "react";
+import Session from "../context/session-context";
 
 function Booking(props) {
-  const { coche, circuito, fecha, vueltas, precio } = props.booking;
+  const { _id, coche, circuito, fecha, vueltas, precio } = props.booking;
+  const { onCancelHandler } = props;
+  const { userData } = useContext(Session);
+  const { token } = userData;
 
+  const onClickHandler = () => {
+    onCancelHandler(token, _id);
+  };
+  const tiempoTranscurrido = Date.now();
+  const hoy = new Date(tiempoTranscurrido);
+  const fechaFormateada = hoy.toLocaleDateString();
+ 
   return (
     <div className={CSS.card}>
       <h3>
@@ -16,6 +29,11 @@ function Booking(props) {
       <h4>
         con el {coche.escuderia} {coche.modelo} por {precio}€
       </h4>
+      {fechaFormateada >= fecha && (
+        <a variant="danger" className={CSS.enlace} onClick={onClickHandler}>
+          Cancelar reserva
+        </a>
+      )}
     </div>
   );
 }

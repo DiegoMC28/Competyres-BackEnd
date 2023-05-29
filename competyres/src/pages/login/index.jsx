@@ -1,15 +1,8 @@
-import {
-  Alert,
-  Button,
-  Card,
-  Col,
-  Container,
-  Form,
-  Row,
-} from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 import Session from "../../context/session-context";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CSS from "./Login.module.css";
 
 const Login = () => {
   const { onLogin, userData } = useContext(Session);
@@ -33,40 +26,30 @@ const Login = () => {
   };
 
   return (
-    <Form onSubmit={onSubmitHandler}>
-      <Card style={{ width: "50rem" }}>
-        <Card.Body>
-          <Container>
-            <Row>
-              <Col>
-                <div>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="text" id="email" />
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <div>
-                  <Form.Label>Contraseña</Form.Label>
-                  <Form.Control type="password" id="password" />
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <div>
-                  <Button type="submit" variant="success">
-                    Submit
-                  </Button>
-                </div>
-                {error && <Alert variant="danger">{error}</Alert>}
-              </Col>
-            </Row>
-          </Container>
-        </Card.Body>
-      </Card>
-    </Form>
+    <form onSubmit={onSubmitHandler}>
+      <div className={CSS.page}>
+        <h1>Introduzca su Correo y Contraseña</h1>
+        <hr />
+        <div>
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="text" id="email" />
+        </div>
+
+        <div>
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control type="password" id="password" />
+        </div>
+
+        <div className={CSS.center}>
+          <Button type="submit" variant="success">
+            Iniciar sesion
+          </Button>
+        </div>
+      </div>
+      <div className={CSS.alert}>
+        {error && <Alert variant="danger">{error}</Alert>}
+      </div>
+    </form>
   );
 };
 

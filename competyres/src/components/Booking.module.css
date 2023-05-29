@@ -5,15 +5,20 @@
   padding: 10px;
   margin-top: 20px;
   transition: 0.5s ease all;
-  & h3{
+  & h3 {
     text-decoration: underline;
   }
 }
 
-.card:hover {
-  box-shadow: 0 0 15px red;
-  transform: scale(1.1);
-  transition: 0.5s ease all;
-  object-fit: cover;
+.enlace {
+  text-decoration: none;
+  color: white;
+  font-size: larger;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.enlace:hover {
+  text-decoration: underline;
   cursor: pointer;
+  color: rgb(173, 0, 0);
 }

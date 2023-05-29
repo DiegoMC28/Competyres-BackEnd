@@ -36,9 +36,14 @@ function Main() {
       {!isLogged && (
         <>
           <p>
-            <Link to={"/singup"}>Registrate</Link> o{" "}
-            <Link to={"/login"}>Inicia sesion</Link> para acceder al servicio de
-            reservas
+            <Link className={CSS.enlace} to={"/singup"}>
+              Registrate
+            </Link>{" "}
+            o{" "}
+            <Link className={CSS.enlace} to={"/login"}>
+              Inicia sesion
+            </Link>{" "}
+            para acceder al servicio de reservas
           </p>
           <hr />
         </>

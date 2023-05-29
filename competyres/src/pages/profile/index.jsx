@@ -27,6 +27,17 @@ const Profile = () => {
     }
   }, [isLogged]);
 
+  const cancelBooking = async (token, _id) => {
+    const config = {
+      url: "/eliminaralquiler/" + _id,
+      method: "DELETE",
+      headers: { Authorization: token },
+    };
+
+    const respuesta = await sendRequest(config);
+    setBookings(respuesta.alquileres);
+  };
+
   const logoutHandler = () => {
     onLogout();
 
@@ -44,7 +55,11 @@ const Profile = () => {
       ></ProfileComponent>
       <h1 className={CSS.record}>Historial de reservas</h1>
       {bookings.map((booking) => (
-        <Booking key={booking._id} booking={booking}></Booking>
+        <Booking
+          key={booking._id}
+          booking={booking}
+          onCancelHandler={cancelBooking}
+        ></Booking>
       ))}
     </div>
   );

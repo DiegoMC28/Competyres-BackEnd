@@ -1,0 +1,23 @@
+.page {
+  margin-top: 20px;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  padding: 50px;
+  & label {
+    margin-top: 10px;
+  }
+}
+
+.center {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.alert {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: larger;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

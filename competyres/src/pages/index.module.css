@@ -1,13 +1,26 @@
 .page {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    gap: 100px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  gap: 100px;
+}
+@media screen and (max-width: 1360px) {
+  .page {
+    grid-template-columns: repeat(1, 1fr);
   }
-  @media screen and (max-width: 1360px) {
-    .page {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  }
+}
+
+.enlace {
+  text-decoration: none;
+  color: white;
+  font-size: larger;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.enlace:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: rgb(173, 0, 0);
+}
