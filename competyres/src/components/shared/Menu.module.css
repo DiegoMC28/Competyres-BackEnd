@@ -1,37 +1,40 @@
 .navBar {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background-color: rgb(150, 0, 0);
-  & a /*[href]*/ {
-    text-decoration: none;
-    font-size: larger;
-    color: black;
-    font-weight: 900;
-    &:hover {
-      color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: rgb(150, 0, 0);
+    & a /*[href]*/ {
+        text-decoration: none;
+        font-size: larger;
+        color: rgb(255, 255, 255);
+        font-weight: 900;
+        transition: 0.5s ease all;
+        &:hover {
+            color: rgb(0, 0, 0);
+            transition: 0.5s ease all;
+        }
     }
-  }
 }
 .imgLogo {
-  filter: drop-shadow(0px 0px 7px black);
-  width: 100px;
-  height: 50px;
+    filter: drop-shadow(0px 0px 7px black);
+    width: 100px;
+    height: 50px;
 }
 .navBrand {
-  flex: 1;
+    flex: 1;
 }
 .navTabs {
-  display: flex;
-  justify-content: space-evenly;
-  flex: 2;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex: 2;
 }
 .navProfile {
-  display: flex;
-  justify-content: space-evenly;
-  flex: 1;
-  & img {
-    width: 30px;
-    height: 30px;
-  }
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1;
+    & img {
+        width: 30px;
+        height: 30px;
+    }
 }

@@ -1,14 +1,13 @@
 import Moment from "react-moment";
 import Logo from "../resources/LogoCabecera2.png";
-import CSS from "./NoticeCard.module.css";
+import CSS from "./AssessmenCard.module.css";
+import Stars from "./Stars";
 
-function NoticeCard(props) {
+function AssessmentCard(props) {
   return (
     <div className={CSS.body}>
-      <div className={CSS.centrado}>
-      <img src={Logo} />
-      </div>
       <h1>{props.title}</h1>
+      <Stars value={props.puntuacion}></Stars>
       <p>{props.body}</p>
       <hr />
       <p className={CSS.fecha}>
@@ -20,4 +19,4 @@ function NoticeCard(props) {
   );
 }
 
-export default NoticeCard;
+export default AssessmentCard;

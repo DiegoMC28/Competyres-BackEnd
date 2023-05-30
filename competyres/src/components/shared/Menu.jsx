@@ -20,7 +20,7 @@ function Menu() {
       </NavLink>
       <Nav className={CSS.navTabs}>
         <div>
-          <NavLink to="/">Noticias</NavLink>
+          <NavLink to="/">Valoraciones</NavLink>
         </div>
         <div>
           <NavLink to="/cars">Coches</NavLink>
