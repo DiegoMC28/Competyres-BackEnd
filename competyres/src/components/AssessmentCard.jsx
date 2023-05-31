@@ -2,17 +2,17 @@ import Moment from "react-moment";
 import Logo from "../resources/LogoCabecera2.png";
 import CSS from "./AssessmenCard.module.css";
 import Stars from "./Stars";
+import 'moment/locale/es';
 
 function AssessmentCard(props) {
   return (
     <div className={CSS.body}>
       <h1>{props.title}</h1>
       <Stars value={props.puntuacion}></Stars>
-      <p>{props.body}</p>
       <hr />
+      <p>{props.body}</p>
       <p className={CSS.fecha}>
-        Publicado el dia <Moment format="YYYY/MM/DD">{props.date}</Moment> a las{" "}
-        <Moment format="hh:mm">{props.date}</Moment>
+        Publicado <Moment fromNow locale="es">{props.date}</Moment>
       </p>
       <hr />
     </div>

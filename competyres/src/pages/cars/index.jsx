@@ -1,16 +1,15 @@
 import CarsCard from "../../components/CarsCard";
 import useHttp from "../../hooks/use-http";
 import { useState, useEffect } from "react";
+import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CSS from "./Cars.module.css";
-import { set } from "mongoose";
 //let onlyOnce = true;
 
 function Coches() {
     const { sendRequest } = useHttp();
     const [coches, setCoches] = useState([]);
     const [filtro, setFiltro] = useState("");
-    const [arrayCoches, setArrayCoches] = useState([]);
     // const [filtro, setFiltro] = useState("");
     const navigate = useNavigate();
 
@@ -26,7 +25,6 @@ function Coches() {
 
         sendRequest(config).then((respuesta) => {
             setCoches(respuesta);
-            setArrayCoches(respuesta);
         });
 
         //onlyOnce = false;
@@ -37,14 +35,37 @@ function Coches() {
         setFiltro(event.target.value);
     };
 
-    const onClick = () => {
-        setCoches(arrayCoches.filter((car) => car.modelo.includes(filtro)));
+    const onClick = async () => {
+        const config = {
+            url: "/buscar/coches?filtro=" + filtro,
+            method: "GET",
+        };
+
+        const response = await sendRequest(config);
+        setCoches(response);
     };
 
     return (
         <div>
-            <input onChange={onChangeHandler}></input>
-            <button onClick={onClick}>Buscar</button>
+            <div className={CSS.hr}>
+                <div className={CSS.buscador}>
+                    <h1>Buscador</h1>
+                </div>
+                <hr />
+                <div className={CSS.buscador}>
+                    <Form.Control
+                        placeholder="Audi A5..."
+                        type="text"
+                        id="buscador"
+                        onChange={onChangeHandler}
+                    />
+
+                    <Button onClick={onClick} variant="success">
+                        Buscar
+                    </Button>
+                </div>
+                <hr />
+            </div>
             <div className={CSS.page}>
                 {coches.map((coche) => (
                     <CarsCard car={coche} onClick={onClickHandler}></CarsCard>

@@ -1,80 +1,105 @@
-const Coche = require('../models/coche')
-const express = require('express')
-const autentificacion = require('../middleware/autentificacion')
-const router = new express.Router()
+const Coche = require("../models/coche");
+const express = require("express");
+const autentificacion = require("../middleware/autentificacion");
+const router = new express.Router();
 
-router.post('/coche', autentificacion,async (req, res) => {
-    const coche = new Coche(req.body)
+router.post("/coche", autentificacion, async (req, res) => {
+    const coche = new Coche(req.body);
 
     try {
-        await coche.save()
-        res.status(201).send(coche)
+        await coche.save();
+        res.status(201).send(coche);
     } catch (e) {
-        res.status(400).send()
+        res.status(400).send();
     }
-})
+});
 
-
-router.get('/coches',async (req, res)=>{
+router.get("/coches", async (req, res) => {
     try {
-        const coche = await Coche.find({})
-        res.status(200).send(coche)
-    }catch (e) {
-        res.status(500).send()
-    }
-
-})
-
-router.get('/coche/:id',async (req, res)=>{
-    const _id = req.params.id
-    try{
-        const coche = await Coche.findById(_id)
-        
-
-        if (!coche) return res.status(404).send()
-
-        res.status(200).send(coche)
-
-    }catch (e){
+        const coche = await Coche.find({});
+        res.status(200).send(coche);
+    } catch (e) {
         res.status(500).send();
     }
+});
 
-})
+router.get("/coche/:id", async (req, res) => {
+    const _id = req.params.id;
+    try {
+        const coche = await Coche.findById(_id);
 
+        if (!coche) return res.status(404).send();
 
-router.patch('/coche/:id', autentificacion,async (req, res) => {
-    const updates = Object.keys(req.body)
-    const allowedUpdates = ['modelo', 'escuderia', 'categoria', 'ultimoAñoDeCompeticion', 'precio', 'descripcion', 'disponible']
-    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+        res.status(200).send(coche);
+    } catch (e) {
+        res.status(500).send();
+    }
+});
+
+router.get("/buscar/coches", async (req, res) => {
+    const { filtro } = req.query;
+
+    try {
+        const regex = new RegExp(filtro, "gi");
+        const coches = await Coche.find({
+            $or: [
+                { modelo: { $regex: regex } },
+                { escuderia: { $regex: regex } },
+                { categoria: { $regex: regex } },
+            ],
+        });
+
+        if (!coches) return res.status(404).send([]);
+
+        res.status(200).send(coches);
+    } catch (e) {
+        res.status(500).send();
+    }
+});
+
+router.patch("/coche/:id", autentificacion, async (req, res) => {
+    const updates = Object.keys(req.body);
+    const allowedUpdates = [
+        "modelo",
+        "escuderia",
+        "categoria",
+        "ultimoAñoDeCompeticion",
+        "precio",
+        "descripcion",
+        "disponible",
+    ];
+    const isValidOperation = updates.every((update) =>
+        allowedUpdates.includes(update)
+    );
 
     if (!isValidOperation) {
-        return res.status(400).send({ error: '¡Error al actualizar!' })
+        return res.status(400).send({ error: "¡Error al actualizar!" });
     }
 
     try {
-        const coche = await Coche.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
+        const coche = await Coche.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true,
+        });
 
-        if (!coche) return res.status(404).send()
+        if (!coche) return res.status(404).send();
 
-        res.send(coche)
+        res.send(coche);
     } catch (e) {
-        res.status(400).send(e)
+        res.status(400).send(e);
     }
-})
+});
 
-
-router.delete('/coche/:id', autentificacion,async (req, res) => {
+router.delete("/coche/:id", autentificacion, async (req, res) => {
     try {
-        const coche = await Coche.findByIdAndDelete(req.params.id)
+        const coche = await Coche.findByIdAndDelete(req.params.id);
 
-        if (!coche) res.status(404).send()
+        if (!coche) res.status(404).send();
 
-        res.send(coche)
+        res.send(coche);
     } catch (e) {
-        res.status(500).send()
+        res.status(500).send();
     }
-})
+});
 
-
-
-module.exports = router
+module.exports = router;

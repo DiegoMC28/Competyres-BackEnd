@@ -72,7 +72,7 @@ function Main() {
                         key={valoracion._id}
                         title={
                             valoracion.usuario.nombre +
-                            "" +
+                            " " +
                             valoracion.usuario.apellido
                         }
                         puntuacion={valoracion.puntuacion}

@@ -1,15 +1,30 @@
 .page {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 100px;
 }
 @media screen and (max-width: 1360px) {
-  .page {
-    grid-template-columns: repeat(3, 1fr);
-  }
+    .page {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 .shadow {
-  box-shadow: 0 0 50px red;
+    box-shadow: 0 0 50px red;
+}
+
+.buscador {
+  margin-top: 20px;
+    display: flex;
+    & input {
+        width: 200px;
+    }
+    & button {
+        margin-left: 10px;
+    }
+}
+
+.hr {
+    width: 290px;
 }

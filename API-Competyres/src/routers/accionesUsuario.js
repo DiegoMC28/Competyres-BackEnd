@@ -11,15 +11,19 @@ router.post("/alquiler", autentificacion, async (req, res) => {
         const coche = await Coche.findById(req.body.coche);
         const circuito = await Circuito.findById(req.body.circuito);
 
-        if (!coche.disponible)
+        if (new Date(coche.disponible ?? new Date()) > new Date())
             return res.status(405).send("Coche no disponible");
 
         if (!circuito.capacidadCoches)
             return res.status(405).send("Circuito no disponible"); //!0 = true
-
-        coche.disponible = false;
+        const fechaAquiler = new Date(req.body.fecha);
+        const diaSiguiente = new Date(
+            fechaAquiler.setDate(fechaAquiler.getDate() + 1)
+        );
+        coche.disponible = diaSiguiente.toISOString();
         await coche.save();
         circuito.capacidadCoches -= 1;
+
         await circuito.save();
         usuario.alquileres.push(req.body);
         await usuario.save();
@@ -68,7 +72,7 @@ router.delete("/eliminaralquiler/:id", autentificacion, async (req, res) => {
         for (let i = 0; i < usuario.alquileres.length; i++) {
             if (usuario.alquileres[i].id === req.params.id) {
                 const coche = await Coche.findById(usuario.alquileres[i].coche);
-                coche.disponible = true;
+                coche.disponible = undefined;
                 await coche.save();
                 const circuito = await Circuito.findById(
                     usuario.alquileres[i].circuito

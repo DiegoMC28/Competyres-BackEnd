@@ -1,41 +1,49 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const Circuito = mongoose.model('Circuito', {
+const Circuito = mongoose.model("Circuito", {
     nombre: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
     },
     ubicacion: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
     },
     extension: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
     },
     descripcion: {
         type: String,
-        required: true
-    }
-    ,
+        required: true,
+    },
     capacidadCoches: {
         type: Number,
         required: true,
-        default: 10
+        default: 10,
     },
     precioPorVuelta: {
         type: Number,
         required: true,
-        default: 50
+        default: 50,
     },
     imagen: {
         type: String,
         required: false,
-        default: ''
-    }
-})
+        default: "",
+    },
+    disponible: {
+        type: Date,
+        required: false,
+    },
+    capacidadTotal: {
+        type: Number,
+        required: true,
+        default: 10,
+    },
+});
 
-module.exports = Circuito
+module.exports = Circuito;

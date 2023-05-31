@@ -13,3 +13,18 @@
 .shadow {
   box-shadow: 0 0 50px red;
 }
+
+.buscador {
+  margin-top: 20px;
+    display: flex;
+    & input {
+        width: 200px;
+    }
+    & button {
+        margin-left: 10px;
+    }
+}
+
+.hr {
+    width: 290px;
+}
