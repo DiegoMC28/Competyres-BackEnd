@@ -1,53 +1,53 @@
 .body {
-  display: flex;
-  margin-top: 10px;
-  justify-content: center;
-  max-width: 1600px;
-  flex-wrap: wrap;
-  & * {
-    flex: 1;
-  }
-  & div:has(img) {
     display: flex;
+    margin-top: 10px;
     justify-content: center;
-  }
-  & img {
-    /* max-width: 600px; */
-    margin-top: 20px;
-    max-height: 400px;
-    object-fit: contain;
-    flex: 0 0 0;
-    border-radius: 10px;
-    background-color: white;
-    padding: 10px;
-    filter: drop-shadow(0px 0px 3px red);
-    transition: 0.5s ease all;
-  }
-  & img:hover {
-    transform: scale(1.05);
-    transition: 0.5s ease all;
-    box-shadow: 0 0 10px red;
-    cursor: pointer;
-  }
+    max-width: 1600px;
+    flex-wrap: wrap;
+    & * {
+        flex: 1;
+    }
+    & div:has(img) {
+        display: flex;
+        justify-content: center;
+    }
+    & img {
+        /* max-width: 600px; */
+        margin-top: 20px;
+        max-height: 400px;
+        object-fit: contain;
+        flex: 0 0 0;
+        border-radius: 10px;
+        background-color: white;
+        padding: 10px;
+        filter: drop-shadow(0px 0px 3px red);
+        transition: 0.5s ease all;
+    }
+    & img:hover {
+        transform: scale(1.05);
+        transition: 0.5s ease all;
+        box-shadow: 0 0 10px red;
+        cursor: pointer;
+    }
 }
 
 .texto {
-  margin-inline: 50px;
-  width: 500px;
-  & h4 {
-    text-decoration: underline;
-  }
-
-  & h5 {
-    margin-inline: 20px;
-  }
-  & p {
-    overflow: auto;
-    max-height: 200px;
+    margin-inline: 50px;
     width: 500px;
-  }
+    & h4 {
+        text-decoration: underline;
+    }
+
+    & h5 {
+        margin-inline: 20px;
+    }
+    & p {
+        overflow: auto;
+        max-height: 200px;
+        width: 500px;
+    }
 }
 
 .button {
-  margin-top: 5px;
+    margin: 5px;
 }

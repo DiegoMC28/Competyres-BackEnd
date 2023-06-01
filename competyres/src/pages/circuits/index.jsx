@@ -10,7 +10,7 @@ function Circuit() {
     const { sendRequest } = useHttp();
     const [circuitos, setCircuitos] = useState([]);
     const [filtro, setFiltro] = useState("");
-    const [arrayCircuitos, setArrayCircuitos] = useState([]);
+    const [arryCircuitos, setArrayCircuitos] = useState([]);
 
     const navigate = useNavigate();
 
@@ -52,12 +52,8 @@ function Circuit() {
         <div>
             <div className={CSS.hr}>
                 <div className={CSS.buscador}>
-                    <h1>Buscador</h1>
-                </div>
-                <hr />
-                <div className={CSS.buscador}>
                     <Form.Control
-                        placeholder="Jerez..."
+                        placeholder="Buscar por nombre de circuito o ubicación"
                         type="text"
                         id="buscador"
                         onChange={onChangeHandler}

@@ -1,6 +1,7 @@
 const Circuito = require("../models/circuito");
 const express = require("express");
 const autentificacion = require("../middleware/autentificacion");
+const Usuario = require("../models/usuario");
 const router = express.Router();
 
 router.post("/circuito", async (req, res) => {
@@ -32,6 +33,39 @@ router.get("/circuito/:id", async (req, res) => {
         const circuito = await Circuito.findById(_id);
 
         if (!circuito) return res.status(404).send();
+
+        const usuarios = await Usuario.find({
+            $and: [
+                { "alquileres.circuito": _id },
+                { "alquileres.fecha": { $lte: new Date() } },
+            ],
+        });
+
+        let restaurar = 0;
+
+        for (let i = 0; i < usuarios.length; i++) {
+            const usuario = usuarios[i];
+            const { alquileres } = usuario;
+            for (let j = 0; j < alquileres.length; j++) {
+                const alquiler = alquileres[j];
+                if (!alquiler.revisado) {
+                    let fecha = new Date(alquiler.fecha);
+                    let mismoId = alquiler.circuito.toString() === _id;
+                    let fechaMenor = fecha <= new Date();
+                    if (mismoId && fechaMenor) {
+                        restaurar++;
+                        usuario.alquileres[j].revisado = true;
+                        await usuario.save();
+                    }
+                }
+            }
+        }
+
+        if (restaurar > 0) {
+            circuito.capacidadCoches += restaurar;
+
+            await circuito.save();
+        }
 
         res.status(200).send(circuito);
     } catch (e) {
@@ -67,6 +101,7 @@ router.patch("/circuito/:id", autentificacion, async (req, res) => {
         "extension",
         "descripcion",
         "disponible",
+        "pais",
     ];
     const isValidOperation = updates.every((update) =>
         allowedUpdates.includes(update)

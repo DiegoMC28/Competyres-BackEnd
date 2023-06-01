@@ -1,32 +1,34 @@
 import Card from "react-bootstrap/Card";
 import CSS from "./Card.module.css";
+import pingRed from "../resources/location-icon-red.png";
 
 function CircuitsCard(props) {
-    const { nombre, ubicacion, imagen, precioPorVuelta } = props.circuit ?? {};
+    const { nombre, ubicacion, imagen, precioPorVuelta, pais } =
+        props.circuit ?? {};
     const { onClick } = props;
     const onClickHandler = () => {
         onClick(props.circuit);
     };
-
+    const bandera =
+        "https://www.countryflagicons.com/SHINY/32/" + pais + ".png";
     return (
         <Card onClick={onClickHandler} className={CSS.cardStyle}>
             <Card.Body>
                 {props.circuit ? (
                     <>
-                        <Card.Header>
-                            <Card.Img variant="top" src={imagen} />
-                        </Card.Header>
-                        <Card.Title>
-                            {/*Poner campo pais en el backend para ponerlo en la ruta de la imagen: ES, UK...etc*/}
-                            <img src="https://www.countryflagicons.com/SHINY/32/ES.png" />
+                        <Card.Title className={`${CSS.m10} ${CSS.truncate}`}>
+                            <img src={bandera} />
                             {nombre}
                         </Card.Title>
-
-                        <Card.Subtitle>
-                            {"Ubicacion: " + ubicacion}
+                        <div className={CSS.imgContainer}>
+                            <Card.Img variant="top" src={imagen} />
+                        </div>
+                        <Card.Subtitle className={`${CSS.m10} ${CSS.truncate}`}>
+                            <img width={30} height={30} src={pingRed} />
+                            {ubicacion}
                         </Card.Subtitle>
-                        <Card.Subtitle>
-                            {"Precio por vuelta: " + precioPorVuelta}
+                        <Card.Subtitle className={CSS.m10}>
+                            {precioPorVuelta + "€/Vuelta "}
                         </Card.Subtitle>
                     </>
                 ) : (

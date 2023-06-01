@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Circuito = mongoose.model("Circuito", {
+const CircuitoSchema = new mongoose.Schema({
     nombre: {
         type: String,
         required: true,
@@ -44,6 +44,13 @@ const Circuito = mongoose.model("Circuito", {
         required: true,
         default: 10,
     },
+    pais: {
+        type: String,
+        required: true,
+        default: "ES",
+    },
 });
+
+const Circuito = mongoose.model("Circuito", CircuitoSchema);
 
 module.exports = Circuito;

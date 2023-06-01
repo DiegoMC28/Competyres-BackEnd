@@ -1,3 +1,18 @@
-.tamañoButton{
-    width: 200px;
+.tamañoButton {
+    flex: 1;
+    margin: 20px;
+}
+
+.buttonOrder {
+    display: flex;
+    justify-content: space-around;
+    flex: 0;
+}
+
+.space {
+    margin-top: 10px;
+    display: flex;
+    cursor: pointer;
+
+    justify-content: center;
 }

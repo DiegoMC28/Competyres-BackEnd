@@ -43,7 +43,7 @@ function Main() {
     };
 
     return (
-        <div className="d-flex justify-content-center flex-column">
+        <div className={CSS.letras}>
             <h1>Experiencia de conducción competitiva</h1>
             <hr />
 

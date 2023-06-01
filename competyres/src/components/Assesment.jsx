@@ -6,7 +6,7 @@ import Session from "../context/session-context";
 import useHttp from "../hooks/use-http";
 
 function Assessment(props) {
-    const {onSubmit = ()=>{}} = props;
+    const { onSubmit = () => {} } = props;
     const { userData } = useContext(Session);
     const { sendRequest } = useHttp();
     const { token } = userData;
@@ -58,21 +58,25 @@ function Assessment(props) {
                         style={{ resize: "none" }}
                         onChange={onTextChangeHandler}
                     ></textarea>
-                    <Stars onChange={onChangeHandler} value={score}></Stars>
-                    <Button
-                        className={CSS.tamañoButton}
-                        onClick={onAddClickhandler}
-                        variant="success"
-                    >
-                        Enviar
-                    </Button>
-                    <Button
-                        className={CSS.tamañoButton}
-                        onClick={onClickHandler}
-                        variant="danger"
-                    >
-                        Cancelar
-                    </Button>
+                    <div className={CSS.space}>
+                        <Stars onChange={onChangeHandler} value={score}></Stars>
+                    </div>
+                    <div className={CSS.buttonOrder}>
+                        <Button
+                            className={CSS.tamañoButton}
+                            onClick={onAddClickhandler}
+                            variant="success"
+                        >
+                            Enviar
+                        </Button>
+                        <Button
+                            className={CSS.tamañoButton}
+                            onClick={onClickHandler}
+                            variant="danger"
+                        >
+                            Cancelar
+                        </Button>
+                    </div>
                 </>
             )}
         </>

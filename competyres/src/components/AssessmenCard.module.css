@@ -1,17 +1,14 @@
 .body {
-  margin-top: 50px;
-  flex: 0;
-  justify-content: center;
-  align-items: center;
-  
-  
-
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
 }
 
-.centrado{
+.centrado {
     text-align: center;
 }
 
-.fecha{
+.fecha {
     font-size: small;
 }

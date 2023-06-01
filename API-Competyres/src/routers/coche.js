@@ -67,6 +67,7 @@ router.patch("/coche/:id", autentificacion, async (req, res) => {
         "precio",
         "descripcion",
         "disponible",
+        "pais"
     ];
     const isValidOperation = updates.every((update) =>
         allowedUpdates.includes(update)

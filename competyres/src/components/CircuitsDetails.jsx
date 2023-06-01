@@ -7,56 +7,78 @@ import useBooking from "../hooks/useBooking";
 import { useNavigate } from "react-router-dom";
 
 function CircuitsDetailsCard(props) {
-  const { circuit, isLogged } = props;
-  const navigate = useNavigate();
-  const { nombre, ubicacion, extension, descripcion, capacidadCoches, imagen } =
-    circuit;
-  const [open, setOpen] = useState(false);
-  const { addCircuit } = useBooking();
+    const { circuit, isLogged } = props;
+    const navigate = useNavigate();
+    const {
+        nombre,
+        ubicacion,
+        extension,
+        descripcion,
+        capacidadCoches,
+        imagen,
+        capacidadTotal,
+    } = circuit;
+    const [open, setOpen] = useState(false);
+    const { addCircuit } = useBooking();
 
-  const onClickHandler = () => {
-    addCircuit(circuit);
-    navigate("/bookings");
-  };
+    const onClickHandler = () => {
+        addCircuit(circuit);
+        navigate("/bookings");
+    };
 
-  const onViewHandler = () => {
-    setOpen(true);
-  };
+    const onViewHandler = () => {
+        setOpen(true);
+    };
+    const onBackClickHandler = () => {
+        navigate("/circuits");
+    };
+    const onCloseHandler = () => {
+        setOpen(false);
+    };
 
-  const onCloseHandler = () => {
-    setOpen(false);
-  };
-
-  return (
-    <div className={CSS.body}>
-      <img src={imagen} alt={nombre} onClick={onViewHandler} />
-      <Lightbox open={open} close={onCloseHandler} slides={[{ src: imagen }]} />
-      <style jsx global>{`
-        .yarl__slide_image {
-          background-color: rgba(255, 255, 255);
-        }
-      `}</style>
-      <div className={CSS.texto}>
-        <h1>{nombre}</h1>
-        <hr></hr>
-        <h5>⨷ Ubicacion: {ubicacion}</h5>
-        <h5>⨷ Extension: {extension}</h5>
-        <h5>⨷ Reservas disponibles: {capacidadCoches}</h5>
-        <hr />
-        <h4>Descripcion</h4>
-        <p>{descripcion}</p>
-        {isLogged && capacidadCoches !== 0 && (
-          <Button
-            className={CSS.button}
-            onClick={onClickHandler}
-            variant="success"
-          >
-            Añadir a la reserva
-          </Button>
-        )}
-      </div>
-    </div>
-  );
+    return (
+        <div className={CSS.body}>
+            <img src={imagen} alt={nombre} onClick={onViewHandler} />
+            <Lightbox
+                open={open}
+                close={onCloseHandler}
+                slides={[{ src: imagen }]}
+            />
+            <style jsx global>{`
+                .yarl__slide_image {
+                    background-color: rgba(255, 255, 255);
+                }
+            `}</style>
+            <div className={CSS.texto}>
+                <h1>{nombre}</h1>
+                <hr></hr>
+                <h5>⨷ Ubicacion: {ubicacion}</h5>
+                <h5>⨷ Extension: {extension}</h5>
+                <h5>
+                    ⨷ Reservas disponibles: {capacidadCoches} / {capacidadTotal}
+                </h5>
+                <hr />
+                <h4>Descripcion</h4>
+                <p>{descripcion}</p>
+                {isLogged && capacidadCoches !== 0 && (
+                    <Button
+                        className={CSS.button}
+                        onClick={onClickHandler}
+                        variant="success"
+                    >
+                        Añadir a la reserva
+                    </Button>
+                )}
+                <Button
+                    className={CSS.button}
+                    onClick={onBackClickHandler}
+                    variant="danger"
+                >
+                    Atras
+                </Button>
+            </div>
+        </div>
+    );
 }
 
 export default CircuitsDetailsCard;

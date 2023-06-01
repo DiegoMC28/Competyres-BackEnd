@@ -22,12 +22,17 @@
 }
 .navBrand {
     flex: 1;
+    text-align: center;
 }
 .navTabs {
     align-items: center;
     display: flex;
     justify-content: space-evenly;
     flex: 2;
+    & img {
+        margin-right: 5px;
+        margin-bottom: 8px;
+    }
 }
 .navProfile {
     display: flex;

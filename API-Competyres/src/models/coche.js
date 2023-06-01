@@ -42,6 +42,11 @@ const Coche = mongoose.model("Coche", {
         required: false,
         default: "",
     },
+    pais: {
+        type: String,
+        required: true,
+        default: "ES",
+    },
 });
 
 module.exports = Coche;

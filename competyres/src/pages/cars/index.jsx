@@ -1,7 +1,7 @@
 import CarsCard from "../../components/CarsCard";
 import useHttp from "../../hooks/use-http";
 import { useState, useEffect } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CSS from "./Cars.module.css";
 //let onlyOnce = true;
@@ -46,25 +46,26 @@ function Coches() {
     };
 
     return (
-        <div>
-            <div className={CSS.hr}>
-                <div className={CSS.buscador}>
-                    <h1>Buscador</h1>
-                </div>
-                <hr />
-                <div className={CSS.buscador}>
+        <div
+            style={{
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "column",
+            }}
+        >
+            <div className={CSS.buscador}>
+                <InputGroup>
                     <Form.Control
-                        placeholder="Audi A5..."
+                        placeholder="Buscar por modelo, escuderia o categoria"
                         type="text"
                         id="buscador"
                         onChange={onChangeHandler}
                     />
 
-                    <Button onClick={onClick} variant="success">
+                    <Button onClick={onClick} variant="light">
                         Buscar
                     </Button>
-                </div>
-                <hr />
+                </InputGroup>
             </div>
             <div className={CSS.page}>
                 {coches.map((coche) => (
