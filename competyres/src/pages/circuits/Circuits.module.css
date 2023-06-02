@@ -1,5 +1,7 @@
 .page {
-  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid grey;
+  margin-top: 20px;
   margin-bottom: 50px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -15,16 +17,12 @@
 }
 
 .buscador {
+  justify-content: center;
   margin-top: 20px;
-    display: flex;
-    & input {
-        width: 200px;
-    }
-    & button {
-        margin-left: 10px;
-    }
+  display: flex;
+  width: 50%;
+  & button {
+      margin-left: 10px;
+  }
 }
 
-.hr {
-    width: 290px;
-}

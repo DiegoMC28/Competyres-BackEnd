@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import useHttp from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
 import CSS from "./Circuits.module.css";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 //let onlyOnce = true;
 
 function Circuit() {
@@ -49,21 +49,26 @@ function Circuit() {
     };
 
     return (
-        <div>
-            <div className={CSS.hr}>
-                <div className={CSS.buscador}>
+        <div
+            style={{
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "column",
+            }}
+        >
+            <div className={CSS.buscador}>
+                <InputGroup>
                     <Form.Control
-                        placeholder="Buscar por nombre de circuito o ubicación"
+                        placeholder="Buscar por circuito o ubicacion"
                         type="text"
                         id="buscador"
                         onChange={onChangeHandler}
                     />
 
-                    <Button onClick={onClick} variant="success">
+                    <Button onClick={onClick} variant="light">
                         Buscar
                     </Button>
-                </div>
-                <hr />
+                </InputGroup>
             </div>
             <div className={CSS.page}>
                 {circuitos.map((circuito) => (
