@@ -4,10 +4,13 @@ import useHttp from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
 import CSS from "./Circuits.module.css";
 import { Button, Form, InputGroup } from "react-bootstrap";
+import DateComponent from "../../components/DateComponent";
+import useBooking from "../../hooks/useBooking";
 //let onlyOnce = true;
 
 function Circuit() {
     const { sendRequest } = useHttp();
+    
     const [circuitos, setCircuitos] = useState([]);
     const [filtro, setFiltro] = useState("");
     const [arryCircuitos, setArrayCircuitos] = useState([]);
@@ -56,6 +59,9 @@ function Circuit() {
                 flexDirection: "column",
             }}
         >
+            <div>
+                <DateComponent></DateComponent>
+            </div>
             <div className={CSS.buscador}>
                 <InputGroup>
                     <Form.Control

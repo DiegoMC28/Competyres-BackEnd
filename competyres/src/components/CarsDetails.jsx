@@ -37,7 +37,6 @@ function CarsDetails(props) {
     const onCloseHandler = () => {
         setOpen(false);
     };
-    const available = new Date(disponible ?? new Date()) <= new Date();
 
     return (
         <div className={CSS.body}>
@@ -66,12 +65,12 @@ function CarsDetails(props) {
                 <h5>⨷ Precio: {precio}€</h5>
                 <h5>
                     ⨷ Disponibilidad:{" "}
-                    {available ? "Disponible" : "No disponible"}
+                    {disponible ? "Disponible" : "No disponible"}
                 </h5>
                 <hr />
                 <h4>Descripcion</h4>
                 <p>{descripcion}</p>
-                {isLogged && available && (
+                {isLogged && disponible && (
                     <Button
                         className={CSS.button}
                         onClick={onClickHandler}

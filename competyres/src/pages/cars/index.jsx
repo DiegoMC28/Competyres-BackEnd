@@ -4,10 +4,13 @@ import { useState, useEffect } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CSS from "./Cars.module.css";
+import DateComponent from "../../components/DateComponent";
+import useBooking from "../../hooks/useBooking";
 //let onlyOnce = true;
 
 function Coches() {
     const { sendRequest } = useHttp();
+    
     const [coches, setCoches] = useState([]);
     const [filtro, setFiltro] = useState("");
     // const [filtro, setFiltro] = useState("");
@@ -53,6 +56,9 @@ function Coches() {
                 flexDirection: "column",
             }}
         >
+            <div>
+                <DateComponent></DateComponent>
+            </div>
             <div className={CSS.buscador}>
                 <InputGroup>
                     <Form.Control

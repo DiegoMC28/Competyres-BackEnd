@@ -1,4 +1,5 @@
 const Coche = require("../models/coche");
+const Usuario = require("../models/usuario");
 const express = require("express");
 const autentificacion = require("../middleware/autentificacion");
 const router = new express.Router();
@@ -25,19 +26,32 @@ router.get("/coches", async (req, res) => {
 
 router.get("/coche/:id", async (req, res) => {
     const _id = req.params.id;
-    try {
-        const coche = await Coche.findById(_id);
 
+    const { fecha } = req.query;
+
+    try {
+        const usuario = await Usuario.find({
+            $and: [
+                { "alquileres.coche": _id },
+                { "alquileres.fecha": new Date(fecha) },
+            ],
+        });
+
+        const coche = await Coche.findById(_id);
         if (!coche) return res.status(404).send();
 
-        res.status(200).send(coche);
+        console.log({usuario, fecha, _id, coche, date:new Date(fecha)});
+        res.status(200).send({
+            ...coche.toObject(),
+            disponible: usuario.length === 0,
+        });
     } catch (e) {
         res.status(500).send();
     }
 });
 
 router.get("/buscar/coches", async (req, res) => {
-    const { filtro } = req.query;
+    const { filtro, fecha } = req.query;
 
     try {
         const regex = new RegExp(filtro, "gi");
@@ -67,7 +81,7 @@ router.patch("/coche/:id", autentificacion, async (req, res) => {
         "precio",
         "descripcion",
         "disponible",
-        "pais"
+        "pais",
     ];
     const isValidOperation = updates.every((update) =>
         allowedUpdates.includes(update)

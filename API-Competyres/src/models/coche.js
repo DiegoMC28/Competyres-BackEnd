@@ -33,10 +33,10 @@ const Coche = mongoose.model("Coche", {
         type: String,
         required: true,
     },
-    disponible: {
-        type: Date,
-        required: false,
-    },
+    // disponible: {
+    //     type: Date,
+    //     required: false,
+    // },
     imagen: {
         type: String,
         required: false,

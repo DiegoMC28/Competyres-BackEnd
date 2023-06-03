@@ -3,8 +3,9 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CarsCard from "../../components/CarsCard";
 import useBooking from "../../hooks/useBooking";
+import DateComponent from "../../components/DateComponent";
 import CircuitsCard from "../../components/CircuitsCard";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import CSS from "./Bookings.module.css";
 
 const Booking = () => {
@@ -12,19 +13,10 @@ const Booking = () => {
     const navigate = useNavigate();
     const { token } = userData;
 
-    const {
-        bookingData,
-        clearCircuit,
-        clearCar,
-        editLaps,
-        doBooking,
-        editDate,
-    } = useBooking();
-    const [timeDisabled, setTimeDisabled] = useState(true);
-    const [lapsDisabled, setLapsDisabled] = useState(true);
+    const { bookingData, clearCircuit, clearCar, editLaps, doBooking } =
+        useBooking();
+
     const [bookingDisabled, setBookingDisabled] = useState(true);
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
 
     const onCarClickHandler = (car) => {
         if (!car) {
@@ -35,24 +27,6 @@ const Booking = () => {
     const onCircuitClickHandler = (circuit) => {
         if (!circuit) {
             navigate("/circuits");
-        }
-    };
-
-    const onChangeTimeHandler = (event) => {
-        setTime(event.target.value);
-        console.log(bookingData.fecha);
-        let fullDate = date + "T" + event.target.value;
-        editDate(fullDate);
-        if (bookingData.coche && bookingData.circuito) {
-            setLapsDisabled(false);
-        }
-    };
-
-    const onChangeDateHandler = (event) => {
-        setDate(event.target.value);
-        editDate(date);
-        if (bookingData.coche && bookingData.circuito) {
-            setTimeDisabled(false);
         }
     };
 
@@ -102,17 +76,11 @@ const Booking = () => {
             <div className={CSS.resto}>
                 <h1>{bookingData.precio}€</h1>
                 <div className={CSS.otro}>
-                    <input type="date" onChange={onChangeDateHandler}></input>
-                    <input
-                        type="time"
-                        onChange={onChangeTimeHandler}
-                        disabled={timeDisabled}
-                    ></input>
-                    <input
+                    <DateComponent></DateComponent>
+                    <Form.Control
                         type="number"
                         onChange={onChangeLapsHandler}
-                        disabled={lapsDisabled}
-                    ></input>
+                    />
 
                     <Button
                         variant="success"

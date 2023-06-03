@@ -16,6 +16,7 @@ router.post("/circuito", async (req, res) => {
 });
 
 router.get("/circuitos", async (req, res) => {
+    const { fecha } = req.query;
     try {
         const circuito = await Circuito.find({});
         res.status(200).send(circuito);
@@ -74,7 +75,7 @@ router.get("/circuito/:id", async (req, res) => {
 });
 
 router.get("/buscar/circuitos", async (req, res) => {
-    const { filtro } = req.query;
+    const { filtro, fecha } = req.query;
 
     try {
         const regex = new RegExp(filtro, "gi");

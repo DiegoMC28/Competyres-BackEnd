@@ -16,12 +16,12 @@ router.post("/alquiler", autentificacion, async (req, res) => {
 
         if (!circuito.capacidadCoches)
             return res.status(405).send("Circuito no disponible"); //!0 = true
-        const fechaAquiler = new Date(req.body.fecha);
-        const diaSiguiente = new Date(
-            fechaAquiler.setDate(fechaAquiler.getDate() + 1)
-        );
-        coche.disponible = diaSiguiente.toISOString();
-        await coche.save();
+        // const fechaAquiler = new Date(req.body.fecha);
+        // const diaSiguiente = new Date(
+        //     fechaAquiler.setDate(fechaAquiler.getDate() + 1)
+        // );
+        // coche.disponible = diaSiguiente.toISOString();
+        // await coche.save();
         circuito.capacidadCoches -= 1;
 
         await circuito.save();
