@@ -40,7 +40,7 @@ router.get("/coche/:id", async (req, res) => {
         const coche = await Coche.findById(_id);
         if (!coche) return res.status(404).send();
 
-        console.log({usuario, fecha, _id, coche, date:new Date(fecha)});
+        // console.log({usuario, fecha, _id, coche, date:new Date(fecha)});
         res.status(200).send({
             ...coche.toObject(),
             disponible: usuario.length === 0,

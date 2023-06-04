@@ -76,7 +76,7 @@ const Booking = () => {
             <div className={CSS.resto}>
                 <h1>{bookingData.precio}€</h1>
                 <div className={CSS.otro}>
-                    <DateComponent></DateComponent>
+                    <DateComponent ></DateComponent>
                     <Form.Control
                         type="number"
                         onChange={onChangeLapsHandler}

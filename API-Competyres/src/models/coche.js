@@ -47,6 +47,11 @@ const Coche = mongoose.model("Coche", {
         required: true,
         default: "ES",
     },
+    CV:{
+        type: String,
+        required: true,
+        default: 0
+    }
 });
 
 module.exports = Coche;

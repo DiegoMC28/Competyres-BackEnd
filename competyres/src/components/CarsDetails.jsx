@@ -17,6 +17,7 @@ function CarsDetails(props) {
         descripcion,
         disponible,
         imagen,
+        CV,
     } = car;
     const [open, setOpen] = useState(false);
     const { addCar } = useBooking();
@@ -61,6 +62,7 @@ function CarsDetails(props) {
                 </h1>
                 <hr></hr>
                 <h5>⨷ Categoria: {categoria}</h5>
+                <h5>⨷ {CV}</h5>
                 <h5>⨷ Ultimo año de competicion: {ultimoAñoDeCompeticion}</h5>
                 <h5>⨷ Precio: {precio}€</h5>
                 <h5>

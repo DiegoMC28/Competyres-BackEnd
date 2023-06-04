@@ -1,6 +1,5 @@
 import CSS from "./Booking.module.css";
 import Moment from "react-moment";
-import { Button } from "react-bootstrap";
 import { useContext } from "react";
 import Session from "../context/session-context";
 
@@ -20,8 +19,7 @@ function Booking(props) {
     return (
         <div className={CSS.card}>
             <h3>
-                Reserva del dia <Moment format="YYYY/MM/DD">{fecha}</Moment> a
-                las <Moment format="hh:mm">{fecha}</Moment>
+                Reserva para el dia <Moment format="YYYY/MM/DD">{fecha}</Moment> 
             </h3>
             <h4>
                 {vueltas} vueltas a el {circuito.nombre}
