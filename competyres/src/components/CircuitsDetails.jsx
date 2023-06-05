@@ -17,6 +17,7 @@ function CircuitsDetailsCard(props) {
         capacidadCoches,
         imagen,
         capacidadTotal,
+        disponible,
     } = circuit;
     const [open, setOpen] = useState(false);
     const { addCircuit } = useBooking();
@@ -52,15 +53,13 @@ function CircuitsDetailsCard(props) {
             <div className={CSS.texto}>
                 <h1>{nombre}</h1>
                 <hr></hr>
-                <h5>⨷ Ubicacion: {ubicacion}</h5>
-                <h5>⨷ Extension: {extension}</h5>
-                <h5>
-                    ⨷ Reservas disponibles: {capacidadCoches} / {capacidadTotal}
-                </h5>
+                <h5>⨷ {ubicacion}</h5>
+                <h5>⨷ {extension}</h5>
+                <h5>⨷ {disponible ? "Disponible" : "No disponible"}</h5>
                 <hr />
                 <h4>Descripcion</h4>
                 <p>{descripcion}</p>
-                {isLogged && capacidadCoches !== 0 && (
+                {isLogged && disponible && (
                     <Button
                         className={CSS.button}
                         onClick={onClickHandler}

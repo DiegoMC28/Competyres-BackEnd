@@ -1,14 +1,15 @@
-.page {
-    padding-top: 20px;
+.cards {
+    padding-top: 40px;
     border-top: 1px solid grey;
     margin-top: 20px;
     margin-bottom: 50px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 100px;
+    min-width: 70%;
 }
 @media screen and (max-width: 1360px) {
-    .page {
+    .cards {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -16,12 +17,21 @@
     box-shadow: 0 0 50px red;
 }
 
-.buscador {
-    justify-content: center;
-    margin-top: 20px;
+.filtro {
     display: flex;
+    justify-content: space-between;
     width: 50%;
-    & button {
-        margin-left: 10px;
-    }
+    margin-top: 20px;
+}
+
+.buscador {
+    width: 70%;
+    
+}
+
+.page {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
 }

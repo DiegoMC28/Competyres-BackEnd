@@ -61,12 +61,12 @@ function CarsDetails(props) {
                     {escuderia} {modelo}
                 </h1>
                 <hr></hr>
-                <h5>⨷ Categoria: {categoria}</h5>
+                <h5>⨷ {categoria}</h5>
                 <h5>⨷ {CV}</h5>
                 <h5>⨷ Ultimo año de competicion: {ultimoAñoDeCompeticion}</h5>
-                <h5>⨷ Precio: {precio}€</h5>
+                <h5>⨷ {precio}€</h5>
                 <h5>
-                    ⨷ Disponibilidad:{" "}
+                    ⨷ {" "}
                     {disponible ? "Disponible" : "No disponible"}
                 </h5>
                 <hr />

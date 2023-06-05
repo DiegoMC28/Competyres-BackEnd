@@ -5,12 +5,10 @@ import { useNavigate } from "react-router-dom";
 import CSS from "./Circuits.module.css";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import DateComponent from "../../components/DateComponent";
-import useBooking from "../../hooks/useBooking";
-//let onlyOnce = true;
 
 function Circuit() {
     const { sendRequest } = useHttp();
-    
+
     const [circuitos, setCircuitos] = useState([]);
     const [filtro, setFiltro] = useState("");
     const [arryCircuitos, setArrayCircuitos] = useState([]);
@@ -52,31 +50,27 @@ function Circuit() {
     };
 
     return (
-        <div
-            style={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-            }}
-        >
-            <div>
-                <DateComponent></DateComponent>
-            </div>
-            <div className={CSS.buscador}>
-                <InputGroup>
-                    <Form.Control
-                        placeholder="Buscar por circuito o ubicacion"
-                        type="text"
-                        id="buscador"
-                        onChange={onChangeHandler}
-                    />
+        <div className={CSS.page}>
+            <div className={CSS.filtro}>
+                <div>
+                    <DateComponent></DateComponent>
+                </div>
+                <div className={CSS.buscador}>
+                    <InputGroup>
+                        <Form.Control
+                            placeholder="Buscar por circuito o ubicacion"
+                            type="text"
+                            id="buscador"
+                            onChange={onChangeHandler}
+                        />
 
-                    <Button onClick={onClick} variant="light">
-                        Buscar
-                    </Button>
-                </InputGroup>
+                        <Button onClick={onClick} variant="light">
+                            Buscar
+                        </Button>
+                    </InputGroup>
+                </div>
             </div>
-            <div className={CSS.page}>
+            <div className={CSS.cards}>
                 {circuitos.map((circuito) => (
                     <CircuitsCard
                         circuit={circuito}

@@ -5,7 +5,7 @@ const bookingModel = {
     _id: "",
     coche: undefined,
     circuito: undefined,
-    fecha: "2023-04-11",
+    fecha: new Date(),
     vueltas: 1,
     precio: 0,
 };

@@ -10,7 +10,7 @@ import useBooking from "../../hooks/useBooking";
 
 function Coches() {
     const { sendRequest } = useHttp();
-    
+
     const [coches, setCoches] = useState([]);
     const [filtro, setFiltro] = useState("");
     // const [filtro, setFiltro] = useState("");
@@ -49,31 +49,26 @@ function Coches() {
     };
 
     return (
-        <div
-            style={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-            }}
-        >
-            <div>
-                <DateComponent></DateComponent>
-            </div>
-            <div className={CSS.buscador}>
-                <InputGroup>
-                    <Form.Control
-                        placeholder="Buscar por modelo, escuderia o categoria"
-                        type="text"
-                        id="buscador"
-                        onChange={onChangeHandler}
-                    />
+        <div className={CSS.page}>
+            <div className={CSS.filtro}>
+                <DateComponent />
 
-                    <Button onClick={onClick} variant="light">
-                        Buscar
-                    </Button>
-                </InputGroup>
+                <div className={CSS.buscador}>
+                    <InputGroup>
+                        <Form.Control
+                            placeholder="Buscar por modelo, escuderia o categoria"
+                            type="text"
+                            id="buscador"
+                            onChange={onChangeHandler}
+                        />
+
+                        <Button onClick={onClick} variant="light">
+                            Buscar
+                        </Button>
+                    </InputGroup>
+                </div>
             </div>
-            <div className={CSS.page}>
+            <div className={CSS.cards}>
                 {coches.map((coche) => (
                     <CarsCard car={coche} onClick={onClickHandler}></CarsCard>
                 ))}

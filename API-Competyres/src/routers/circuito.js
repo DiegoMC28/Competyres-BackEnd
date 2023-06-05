@@ -25,50 +25,101 @@ router.get("/circuitos", async (req, res) => {
     }
 });
 
+// router.get("/circuito/:id", async (req, res) => {
+//     const _id = req.params.id;
+//     //Nos traemos los usuarios filtrando por alquiler.circuito y los mapeamos
+//     //para que nos devuelvan los alquileres y filtramos los que ya se hayan pasado
+//     //de la fecha actual.
+//     try {
+//         const circuito = await Circuito.findById(_id);
+
+//         if (!circuito) return res.status(404).send();
+
+//         const usuarios = await Usuario.find({
+//             $and: [
+//                 { "alquileres.circuito": _id },
+//                 { "alquileres.fecha": { $lte: new Date() } },
+//             ],
+//         });
+
+//         let restaurar = 0;
+
+//         for (let i = 0; i < usuarios.length; i++) {
+//             const usuario = usuarios[i];
+//             const { alquileres } = usuario;
+//             for (let j = 0; j < alquileres.length; j++) {
+//                 const alquiler = alquileres[j];
+//                 if (!alquiler.revisado) {
+//                     let fecha = new Date(alquiler.fecha);
+//                     let mismoId = alquiler.circuito.toString() === _id;
+//                     let fechaMenor = fecha <= new Date();
+//                     if (mismoId && fechaMenor) {
+//                         restaurar++;
+//                         usuario.alquileres[j].revisado = true;
+//                         await usuario.save();
+//                     }
+//                 }
+//             }
+//         }
+
+//         if (restaurar > 0) {
+//             circuito.capacidadCoches += restaurar;
+
+//             await circuito.save();
+//         }
+
+//         res.status(200).send(circuito);
+//     } catch (e) {
+//         res.status(500).send();
+//     }
+// });
+
 router.get("/circuito/:id", async (req, res) => {
     const _id = req.params.id;
-    //Nos traemos los usuarios filtrando por alquiler.circuito y los mapeamos
-    //para que nos devuelvan los alquileres y filtramos los que ya se hayan pasado
-    //de la fecha actual.
+
+    const { fecha } = req.query;
+
     try {
-        const circuito = await Circuito.findById(_id);
-
-        if (!circuito) return res.status(404).send();
-
-        const usuarios = await Usuario.find({
+        const usuario = await Usuario.find({
             $and: [
                 { "alquileres.circuito": _id },
-                { "alquileres.fecha": { $lte: new Date() } },
+                { "alquileres.fecha": new Date(fecha) },
             ],
         });
 
-        let restaurar = 0;
+        const circuito = await Circuito.findById(_id);
+        if (!circuito) return res.status(404).send();
 
-        for (let i = 0; i < usuarios.length; i++) {
-            const usuario = usuarios[i];
-            const { alquileres } = usuario;
+        // console.log({ usuarios, fecha, _id, circuito, date: new Date(fecha) });
+        // console.log(usuarios[0].alquileres.length);
+
+        let disponible = false;
+        let cont = 0;
+
+        for (let i = 0; i < usuario.length; i++) {
+            const usuarion = usuario[i];
+            const { alquileres } = usuarion;
+            // cont = 0;
             for (let j = 0; j < alquileres.length; j++) {
                 const alquiler = alquileres[j];
-                if (!alquiler.revisado) {
-                    let fecha = new Date(alquiler.fecha);
-                    let mismoId = alquiler.circuito.toString() === _id;
-                    let fechaMenor = fecha <= new Date();
-                    if (mismoId && fechaMenor) {
-                        restaurar++;
-                        usuario.alquileres[j].revisado = true;
-                        await usuario.save();
-                    }
+                let idCircuito = alquiler.circuito.toString();
+                let fechaAlquiler = alquiler.fecha.toString();
+                let fechaSeleccion = new Date(fecha).toString();
+
+                if (idCircuito === _id && fechaAlquiler === fechaSeleccion) {
+                    cont++;
                 }
             }
         }
 
-        if (restaurar > 0) {
-            circuito.capacidadCoches += restaurar;
-
-            await circuito.save();
+        if (cont < circuito.capacidadTotal) {
+            disponible = true;
         }
 
-        res.status(200).send(circuito);
+        res.status(200).send({
+            ...circuito.toObject(),
+            disponible: disponible,
+        });
     } catch (e) {
         res.status(500).send();
     }
