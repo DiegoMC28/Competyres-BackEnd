@@ -53,7 +53,7 @@ function Circuit() {
         <div className={CSS.page}>
             <div className={CSS.filtro}>
                 <div>
-                    <DateComponent></DateComponent>
+                    <DateComponent />
                 </div>
                 <div className={CSS.buscador}>
                     <InputGroup>

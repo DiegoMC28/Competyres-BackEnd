@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import useHttp from "../hooks/use-http";
 
+const fechaDefault = new Date();
+fechaDefault.setDate(fechaDefault.getDate() + 7);
+
 const bookingModel = {
     _id: "",
     coche: undefined,
     circuito: undefined,
-    fecha: new Date(),
+    fecha: fechaDefault,
     vueltas: 1,
     precio: 0,
 };

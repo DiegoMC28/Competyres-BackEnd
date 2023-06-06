@@ -3,30 +3,17 @@ const Usuario = require("../models/usuario");
 const Coche = require("../models/coche");
 const Circuito = require("../models/circuito");
 const autentificacion = require("../middleware/autentificacion");
+
 const router = new express.Router();
 
 router.post("/alquiler", autentificacion, async (req, res) => {
     try {
         const usuario = req.usuario;
-        const coche = await Coche.findById(req.body.coche);
-        const circuito = await Circuito.findById(req.body.circuito);
 
-        if (new Date(coche.disponible ?? new Date()) > new Date())
-            return res.status(405).send("Coche no disponible");
-
-        if (!circuito.capacidadCoches)
-            return res.status(405).send("Circuito no disponible"); //!0 = true
-        // const fechaAquiler = new Date(req.body.fecha);
-        // const diaSiguiente = new Date(
-        //     fechaAquiler.setDate(fechaAquiler.getDate() + 1)
-        // );
-        // coche.disponible = diaSiguiente.toISOString();
-        // await coche.save();
-        circuito.capacidadCoches -= 1;
-
-        await circuito.save();
         usuario.alquileres.push(req.body);
         await usuario.save();
+
+
         return res.status(200).send(usuario);
     } catch (e) {
         res.status(400).send(e);

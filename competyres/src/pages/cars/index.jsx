@@ -5,7 +5,6 @@ import { Button, Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CSS from "./Cars.module.css";
 import DateComponent from "../../components/DateComponent";
-import useBooking from "../../hooks/useBooking";
 //let onlyOnce = true;
 
 function Coches() {

@@ -20,11 +20,6 @@ const CircuitoSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    capacidadCoches: {
-        type: Number,
-        required: true,
-        default: 10,
-    },
     precioPorVuelta: {
         type: Number,
         required: true,

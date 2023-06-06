@@ -154,6 +154,7 @@ router.patch("/circuito/:id", autentificacion, async (req, res) => {
         "descripcion",
         "disponible",
         "pais",
+        "capacidadTotal",
     ];
     const isValidOperation = updates.every((update) =>
         allowedUpdates.includes(update)

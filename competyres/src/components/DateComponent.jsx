@@ -6,9 +6,11 @@ import CSS from "./DateComponent.module.css";
 const DateComponent = () => {
     const { editDate, bookingData } = useBooking();
     const { fecha } = bookingData;
+    const fechaMinima = new Date()
+    fechaMinima.setDate(fechaMinima.getDate()+7);
 
     const onChangeDateHandler = (event) => {
-        editDate(event.target.value);
+        editDate(new Date(event.target.value));
     };
 
     return (
@@ -18,7 +20,7 @@ const DateComponent = () => {
                 type="date"
                 onChange={onChangeDateHandler}
                 value={fecha.toISOString().split("T")[0]}
-                min={new Date().toISOString().slice(0, 10)}
+                min={fechaMinima.toISOString().slice(0, 10)}
             />
         </div>
     );
