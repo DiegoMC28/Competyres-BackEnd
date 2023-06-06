@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import Session from "../../context/session-context";
 import CSS from "./CarsDetails.module.css";
 import useBooking from "../../hooks/useBooking";
+import moment from "moment";
 
 const CarsDetails = () => {
     const params = useParams();
@@ -18,8 +19,9 @@ const CarsDetails = () => {
 
     useEffect(() => {
         // if (onlyOnce) {
-            
-            
+        
+        // console.log(new Date(moment().format("L")).toISOString());
+
         const config = {
             url: "/coche/" + id + "?fecha=" + fecha.toISOString(),
             method: "GET",
