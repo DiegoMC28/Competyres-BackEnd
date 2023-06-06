@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import useHttp from "../hooks/use-http";
 
-const fechaDefault = new Date();
-fechaDefault.setDate(fechaDefault.getDate() + 7);
+const fechaISO = new Date();
+fechaISO.setDate(fechaISO.getDate() + 8);
+
+const ISOString = fechaISO.toISOString().slice(0, 10) + "T00:00:00";
+const fechaDefault = new Date(ISOString);
 
 const bookingModel = {
     _id: "",

@@ -37,6 +37,8 @@ router.get("/coche/:id", async (req, res) => {
             ],
         });
 
+        
+
         const coche = await Coche.findById(_id);
         if (!coche) return res.status(404).send();
 

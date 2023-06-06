@@ -19,7 +19,7 @@ const CircuitDetails = () => {
     useEffect(() => {
         // if (onlyOnce) {
         const config = {
-            url: "/circuito/" + id + "?fecha=" + fecha,
+            url: "/circuito/" + id + "?fecha=" + fecha.toISOString(),
             method: "GET",
         };
 

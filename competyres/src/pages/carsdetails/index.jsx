@@ -18,8 +18,10 @@ const CarsDetails = () => {
 
     useEffect(() => {
         // if (onlyOnce) {
+            
+            
         const config = {
-            url: "/coche/" + id + "?fecha=" + fecha,
+            url: "/coche/" + id + "?fecha=" + fecha.toISOString(),
             method: "GET",
         };
 

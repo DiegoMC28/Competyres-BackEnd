@@ -3,6 +3,7 @@ body {
     background-image: url("./resources/fondoCarbono.jpg");
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     background-color: #181818;
     min-height: 100vh;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
