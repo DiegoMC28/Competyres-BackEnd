@@ -18,22 +18,17 @@ const CarsDetails = () => {
     const { isLogged } = userData;
 
     useEffect(() => {
-        // if (onlyOnce) {
-        
-        // console.log(new Date(moment().format("L")).toISOString());
+        const formatoFecha = moment(fecha).format("YYYY-MM-DD");
 
         const config = {
-            url: "/coche/" + id + "?fecha=" + fecha.toISOString(),
+            url: "/coche/" + id + "?fecha=" + formatoFecha,
             method: "GET",
         };
 
         sendRequest(config).then((respuesta) => {
             setCoche(respuesta);
         });
-
-        //onlyOnce = false;
-        //}
-    }, [sendRequest, id]);
+    }, [sendRequest, id, fecha]);
 
     return (
         <div className={CSS.page}>

@@ -5,6 +5,7 @@ import CircuitsDetails from "../../components/CircuitsDetails";
 import Session from "../../context/session-context";
 import CSS from "./CircuitsDetails.module.css";
 import useBooking from "../../hooks/useBooking";
+import moment from "moment";
 
 const CircuitDetails = () => {
     const params = useParams();
@@ -17,19 +18,17 @@ const CircuitDetails = () => {
     const { isLogged } = userData;
 
     useEffect(() => {
-        // if (onlyOnce) {
+        const formatoFecha = moment(fecha).format("YYYY-MM-DD");
+
         const config = {
-            url: "/circuito/" + id + "?fecha=" + fecha.toISOString(),
+            url: "/circuito/" + id + "?fecha=" + formatoFecha,
             method: "GET",
         };
 
         sendRequest(config).then((respuesta) => {
             setCircuito(respuesta);
         });
-
-        //onlyOnce = false;
-        //}
-    }, [sendRequest, id]);
+    }, [sendRequest, id, fecha]);
 
     return (
         <div className={CSS.page}>

@@ -24,7 +24,9 @@
     margin-top: 20px;
 }
 
-
+.buscador {
+    width: 70%;
+}
 
 .page {
     display: flex;

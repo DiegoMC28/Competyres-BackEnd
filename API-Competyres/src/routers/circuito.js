@@ -83,7 +83,7 @@ router.get("/circuito/:id", async (req, res) => {
         const usuario = await Usuario.find({
             $and: [
                 { "alquileres.circuito": _id },
-                { "alquileres.fecha": new Date(fecha) },
+                { "alquileres.fecha": fecha },
             ],
         });
 
@@ -103,8 +103,8 @@ router.get("/circuito/:id", async (req, res) => {
             for (let j = 0; j < alquileres.length; j++) {
                 const alquiler = alquileres[j];
                 let idCircuito = alquiler.circuito.toString();
-                let fechaAlquiler = alquiler.fecha.toString();
-                let fechaSeleccion = new Date(fecha).toString();
+                let fechaAlquiler = alquiler.fecha;
+                let fechaSeleccion = fecha;
 
                 if (idCircuito === _id && fechaAlquiler === fechaSeleccion) {
                     cont++;
@@ -112,7 +112,7 @@ router.get("/circuito/:id", async (req, res) => {
             }
         }
 
-        if (cont < circuito.capacidadTotal) {
+        if (cont < 2) {
             disponible = true;
         }
 
@@ -126,7 +126,7 @@ router.get("/circuito/:id", async (req, res) => {
 });
 
 router.get("/buscar/circuitos", async (req, res) => {
-    const { filtro, fecha } = req.query;
+    const { filtro } = req.query;
 
     try {
         const regex = new RegExp(filtro, "gi");

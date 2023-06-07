@@ -1,5 +1,6 @@
 import Card from "react-bootstrap/Card";
 import CSS from "./Card.module.css";
+import Logo from "../resources/LogoCabecera1.png"
 import coronaLaurel from "../resources/laurels-icon.webp";
 
 function CarsCard(props) {
@@ -7,7 +8,6 @@ function CarsCard(props) {
         escuderia,
         modelo,
         categoria,
-        ultimoAñoDeCompeticion,
         imagen,
         precio,
         pais,
@@ -24,11 +24,11 @@ function CarsCard(props) {
                 {props.car ? (
                     <>
                         <Card.Title className={`${CSS.m10} ${CSS.truncate}`}>
-                            <img src={bandera} />
+                            <img src={bandera} alt=""/>
                             {escuderia + " " + modelo}
                         </Card.Title>
                         <Card.Subtitle className={CSS.m10}>
-                            <img width={35} height={35} src={coronaLaurel} />
+                            <img alt="" width={35} height={35} src={coronaLaurel} />
                             {categoria}
                         </Card.Subtitle>
                         <div className={CSS.imgContainer}>
@@ -42,6 +42,7 @@ function CarsCard(props) {
                 ) : (
                     <>
                         <h1>Elije Coche</h1>
+                        <img alt="Logo de la app" src={Logo} width={260} height={160} style={{marginTop:"80px"}}/>
                     </>
                 )}
             </Card.Body>

@@ -25,7 +25,7 @@ const Profile = () => {
                 setBookings(bookings);
             });
         }
-    }, [isLogged]);
+    }, [isLogged, sendRequest, token]);
 
     const cancelBooking = async (token, _id) => {
         const config = {
@@ -66,8 +66,12 @@ const Profile = () => {
                 Email={userData.email}
                 logoutHandler={logoutHandler}
             ></ProfileComponent>
-            <h1 className={CSS.record}>Reservas pendientes</h1>
-            <hr />
+            {bookingCurrent.length !== 0 && (
+                <>
+                    <h1 className={CSS.record}>Reservas pendientes</h1>
+                    <hr />
+                </>
+            )}
             {bookingCurrent.map((booking) => (
                 <Booking
                     key={booking._id}
@@ -75,8 +79,13 @@ const Profile = () => {
                     onCancelHandler={cancelBooking}
                 ></Booking>
             ))}
-            <h1 className={CSS.record}>Historial de reservas</h1>
-            <hr />
+
+            {bookingHistory.length !== 0 && (
+                <>
+                    <h1 className={CSS.record}>Historial de reservas</h1>
+                    <hr />
+                </>
+            )}
             {bookingHistory.map((booking) => (
                 <Booking
                     key={booking._id}

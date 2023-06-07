@@ -3,7 +3,7 @@ import Session from "../../context/session-context";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
-import Logo from "../../resources/LogoCabecera2.png";
+import Logo from "../../resources/CompetyresSinFondo.png";
 import CSS from "./Menu.module.css";
 import icono from "../../resources/user-icon.webp";
 import iconoBandera from "../../resources/flag-icon.webp";
@@ -21,21 +21,22 @@ function Menu() {
                     <img
                         alt="Logo de la app"
                         src={Logo}
+                        
                         className={CSS.imgLogo}
                     ></img>
                 </Navbar.Brand>
             </NavLink>
             <Nav className={CSS.navTabs}>
                 <div>
-                    <img width={30} height={30} src={whiteStar} />
+                    <img alt="" width={30} height={30} src={whiteStar} />
                     <NavLink to="/">Valoraciones</NavLink>
                 </div>
                 <div>
-                    <img width={30} height={30} src={whiteCar} />
+                    <img alt="" width={30} height={30} src={whiteCar} />
                     <NavLink to="/cars">Coches</NavLink>
                 </div>
                 <div>
-                    <img width={30} height={30} src={whitePing} />
+                    <img alt="" width={30} height={30} src={whitePing} />
                     <NavLink to="/circuits">Circuitos</NavLink>
                 </div>
             </Nav>

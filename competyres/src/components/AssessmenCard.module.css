@@ -3,11 +3,17 @@
     display: flex;
     flex-direction: column;
     max-width: 400px;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #000a;
+    border-radius: 10px;
+    min-width: 350px;
+    & p {
+        overflow-wrap: break-word;
+        text-align: center;
+    }
 }
 
-.centrado {
-    text-align: center;
-}
 
 .fecha {
     font-size: small;

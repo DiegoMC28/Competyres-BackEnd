@@ -3,6 +3,7 @@ const Usuario = require("../models/usuario");
 const express = require("express");
 const autentificacion = require("../middleware/autentificacion");
 const router = new express.Router();
+const mongoose = require("mongoose");
 
 router.post("/coche", autentificacion, async (req, res) => {
     const coche = new Coche(req.body);
@@ -28,24 +29,38 @@ router.get("/coche/:id", async (req, res) => {
     const _id = req.params.id;
 
     const { fecha } = req.query;
+    const fechaQuery = fecha;
 
     try {
-        const usuario = await Usuario.find({
+        const usuarios = await Usuario.find({
             $and: [
-                { "alquileres.coche": _id },
-                { "alquileres.fecha": new Date(fecha) },
+                {
+                    "alquileres.coche": _id,
+                },
+                { "alquileres.fecha": fechaQuery },
             ],
         });
-
-        
 
         const coche = await Coche.findById(_id);
         if (!coche) return res.status(404).send();
 
+        let disponible = true;
+
+        for (let i = 0; i < usuarios.length; i++) {
+            const { alquileres } = usuarios[i];
+            for (let j = 0; j < alquileres.length; j++) {
+                const { coche, fecha } = alquileres[j];
+
+                if (coche.toString() === _id && fecha === fechaQuery) {
+                    disponible = false;
+                }
+            }
+        }
+
         // console.log({usuario, fecha, _id, coche, date:new Date(fecha)});
         res.status(200).send({
             ...coche.toObject(),
-            disponible: usuario.length === 0,
+            disponible: disponible,
         });
     } catch (e) {
         res.status(500).send();
@@ -53,7 +68,7 @@ router.get("/coche/:id", async (req, res) => {
 });
 
 router.get("/buscar/coches", async (req, res) => {
-    const { filtro, fecha } = req.query;
+    const { filtro } = req.query;
 
     try {
         const regex = new RegExp(filtro, "gi");

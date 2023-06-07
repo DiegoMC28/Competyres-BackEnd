@@ -1,19 +1,19 @@
 import CircuitsCard from "../../components/CircuitsCard";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useHttp from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
 import CSS from "./Circuits.module.css";
 import { Button, Form, InputGroup } from "react-bootstrap";
-import DateComponent from "../../components/DateComponent";
+import DateComponent from "../../components/BookingDate";
+import Session from "../../context/session-context";
 
 function Circuit() {
     const { sendRequest } = useHttp();
-
     const [circuitos, setCircuitos] = useState([]);
     const [filtro, setFiltro] = useState("");
-    const [arryCircuitos, setArrayCircuitos] = useState([]);
-
     const navigate = useNavigate();
+    const { userData } = useContext(Session);
+    const { isLogged } = userData;
 
     const onClickHandler = (circuit) => {
         navigate(circuit._id);
@@ -28,7 +28,6 @@ function Circuit() {
 
         sendRequest(config).then((respuesta) => {
             setCircuitos(respuesta);
-            setArrayCircuitos(respuesta);
         });
 
         //onlyOnce = false;
@@ -52,9 +51,8 @@ function Circuit() {
     return (
         <div className={CSS.page}>
             <div className={CSS.filtro}>
-                <div>
-                    <DateComponent />
-                </div>
+                {isLogged && <DateComponent />}
+
                 <div className={CSS.buscador}>
                     <InputGroup>
                         <Form.Control
@@ -73,6 +71,7 @@ function Circuit() {
             <div className={CSS.cards}>
                 {circuitos.map((circuito) => (
                     <CircuitsCard
+                        key={circuito._id}
                         circuit={circuito}
                         onClick={onClickHandler}
                     ></CircuitsCard>

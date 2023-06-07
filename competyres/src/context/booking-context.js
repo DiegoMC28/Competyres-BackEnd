@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import useHttp from "../hooks/use-http";
+import moment from "moment";
 
-const fechaISO = new Date();
-fechaISO.setDate(fechaISO.getDate() + 8);
-
-const ISOString = fechaISO.toISOString().slice(0, 10) + "T00:00:00";
-const fechaDefault = new Date(ISOString);
+const fechaDefault = moment().add(7, 'days');
 
 const bookingModel = {
     _id: "",
@@ -65,6 +62,7 @@ export const BookingProvider = (props) => {
     };
 
     const editDate = (date) => {
+
         setBookingData((prevState) => {
             clearCar();
             clearCircuit();
@@ -81,7 +79,7 @@ export const BookingProvider = (props) => {
             body: {
                 coche: coche._id,
                 circuito: circuito._id,
-                fecha: fecha,
+                fecha: fecha.format("YYYY-MM-DD"),
                 vueltas: vueltas,
                 precio: precio,
             },

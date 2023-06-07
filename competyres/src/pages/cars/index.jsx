@@ -1,19 +1,21 @@
 import CarsCard from "../../components/CarsCard";
 import useHttp from "../../hooks/use-http";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CSS from "./Cars.module.css";
-import DateComponent from "../../components/DateComponent";
+import DateComponent from "../../components/BookingDate";
+import Session from "../../context/session-context";
 //let onlyOnce = true;
 
 function Coches() {
     const { sendRequest } = useHttp();
-
     const [coches, setCoches] = useState([]);
     const [filtro, setFiltro] = useState("");
     // const [filtro, setFiltro] = useState("");
     const navigate = useNavigate();
+    const { userData } = useContext(Session);
+    const { isLogged } = userData;
 
     const onClickHandler = (car) => {
         navigate(car._id);
@@ -50,7 +52,7 @@ function Coches() {
     return (
         <div className={CSS.page}>
             <div className={CSS.filtro}>
-                <DateComponent />
+                {isLogged && <DateComponent />}
 
                 <div className={CSS.buscador}>
                     <InputGroup>
@@ -69,7 +71,11 @@ function Coches() {
             </div>
             <div className={CSS.cards}>
                 {coches.map((coche) => (
-                    <CarsCard car={coche} onClick={onClickHandler}></CarsCard>
+                    <CarsCard
+                        key={coche._id}
+                        car={coche}
+                        onClick={onClickHandler}
+                    ></CarsCard>
                 ))}
             </div>
         </div>

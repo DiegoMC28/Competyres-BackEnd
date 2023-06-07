@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CarsCard from "../../components/CarsCard";
 import useBooking from "../../hooks/useBooking";
-import DateComponent from "../../components/DateComponent";
+import DateComponent from "../../components/BookingDate";
 import CircuitsCard from "../../components/CircuitsCard";
 import { Button, Form } from "react-bootstrap";
 import CSS from "./Bookings.module.css";
@@ -17,6 +17,8 @@ const Booking = () => {
         useBooking();
 
     const [bookingDisabled, setBookingDisabled] = useState(true);
+
+    
 
     const onCarClickHandler = (car) => {
         if (!car) {

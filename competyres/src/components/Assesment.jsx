@@ -57,6 +57,7 @@ function Assessment(props) {
                         rows={4}
                         style={{ resize: "none" }}
                         onChange={onTextChangeHandler}
+                        placeholder="Escriba un comentario"
                     ></textarea>
                     <div className={CSS.space}>
                         <Stars onChange={onChangeHandler} value={score}></Stars>

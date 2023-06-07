@@ -59,7 +59,7 @@ const usuarioSchema = new mongoose.Schema({
                 ref: "Circuito",
             },
             fecha: {
-                type: Date,
+                type: String,
                 required: true,
             },
             vueltas: {

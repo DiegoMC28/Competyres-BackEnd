@@ -28,7 +28,7 @@ function Main() {
 
         //onlyOnce = false;
         //}
-    }, [sendRequest]);
+    }, [sendRequest, token]);
 
     const onSubmitHandler = () => {
         const config = {
@@ -44,28 +44,31 @@ function Main() {
 
     return (
         <div className={CSS.letras}>
-            <h1>Experiencia de conducción competitiva</h1>
-            <hr />
+            <div className={CSS.titulo}>
+                <h1>Experiencia de conducción profesional en circuito</h1>
+            </div>
 
-            {!isLogged ? (
-                <>
-                    <p>
-                        <Link className={CSS.enlace} to={"/singup"}>
-                            Registrate
-                        </Link>{" "}
-                        o{" "}
-                        <Link className={CSS.enlace} to={"/login"}>
-                            Inicia sesion
-                        </Link>{" "}
-                        para acceder al servicio de reservas
-                    </p>
-                </>
-            ) : (
-                <>
-                    <Assessment onSubmit={onSubmitHandler}></Assessment>
-                </>
-            )}
-            <hr />
+            <div className={CSS.Assessment}>
+                {!isLogged ? (
+                    <>
+                        <p>
+                            <Link className={CSS.enlace} to={"/singup"}>
+                                Registrate
+                            </Link>{" "}
+                            o{" "}
+                            <Link className={CSS.enlace} to={"/login"}>
+                                Inicia sesion
+                            </Link>{" "}
+                            para acceder al servicio de reservas
+                        </p>
+                    </>
+                ) : (
+                    <>
+                        <Assessment onSubmit={onSubmitHandler}></Assessment>
+                    </>
+                )}
+            </div>
+
             <div className={CSS.page}>
                 {valoraciones.map((valoracion) => (
                     <AssessmentCard

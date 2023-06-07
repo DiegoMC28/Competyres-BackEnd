@@ -1,6 +1,7 @@
 .body {
   display: flex;
   margin-top: 10px;
+  min-width: 700px;
   border-bottom: 2px solid white;
   align-items: center;
   justify-content: center;

@@ -1,9 +1,9 @@
 body {
     color: white;
-    background-image: url("./resources/fondoCarbono.jpg");
+    /* background-image: url("./resources/desfile-autos-deportivos-o-carrera-carretera.jpg");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     background-color: #181818;
     min-height: 100vh;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -30,7 +30,6 @@ main {
 }
 
 .App-logo {
-    filter: drop-shadow(0px 0px 10px rgb(255, 255, 255));
     pointer-events: none;
 }
 
@@ -47,4 +46,19 @@ main {
 
 .App-link {
     color: #61dafb;
+}
+
+/* Degradado */
+html {
+    min-height: 100%;
+}
+
+body {
+    background: rgb(37, 0, 0);
+    background: linear-gradient(
+        90deg,
+        rgba(37, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 50%,
+        rgba(37, 0, 0, 1) 100%
+    );
 }
