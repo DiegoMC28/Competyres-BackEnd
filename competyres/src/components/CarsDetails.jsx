@@ -5,6 +5,7 @@ import "yet-another-react-lightbox/styles.css";
 import { useState } from "react";
 import useBooking from "../hooks/useBooking";
 import { useNavigate } from "react-router-dom";
+import flechaAtras from "../resources/flechas-izquierda.png";
 
 function CarsDetails(props) {
     const { car, isLogged } = props;
@@ -40,54 +41,53 @@ function CarsDetails(props) {
     };
 
     return (
-        <div className={CSS.body}>
+        <div>
             <img
-                src={imagen}
-                alt={escuderia + " " + modelo}
-                onClick={onViewHandler}
+                src={flechaAtras}
+                onClick={onBackClickHandler}
+                className={CSS.button}
             />
-            <Lightbox
-                open={open}
-                close={onCloseHandler}
-                slides={[{ src: imagen }]}
-            />
-            <style jsx global>{`
-                .yarl__slide_image {
-                    background-color: rgba(255, 255, 255);
-                }
-            `}</style>
-            <div className={CSS.texto}>
-                <h1>
-                    {escuderia} {modelo}
-                </h1>
-                <hr></hr>
-                <h5>⨷ {categoria}</h5>
-                <h5>⨷ {CV}</h5>
-                <h5>⨷ Ultimo año de competicion: {ultimoAñoDeCompeticion}</h5>
-                <h5>⨷ {precio}€</h5>
-                <h5>
-                    ⨷ {" "}
-                    {disponible ? "Disponible" : "No disponible"}
-                </h5>
-                <hr />
-                <h4>Descripcion</h4>
-                <p>{descripcion}</p>
-                {isLogged && disponible && (
-                    <Button
-                        className={CSS.button}
-                        onClick={onClickHandler}
-                        variant="success"
-                    >
-                        Añadir a la reserva
-                    </Button>
-                )}
-                <Button
-                    className={CSS.button}
-                    onClick={onBackClickHandler}
-                    variant="danger"
-                >
-                    Atras
-                </Button>
+            <div className={CSS.body}>
+                <img
+                    src={imagen}
+                    alt={escuderia + " " + modelo}
+                    onClick={onViewHandler}
+                />
+                <Lightbox
+                    open={open}
+                    close={onCloseHandler}
+                    slides={[{ src: imagen }]}
+                />
+                <style jsx="true" global="true">{`
+                    .yarl__slide_image {
+                        background-color: rgba(255, 255, 255);
+                    }
+                `}</style>
+                <div className={CSS.texto}>
+                    <h1>
+                        {escuderia} {modelo}
+                    </h1>
+                    <hr></hr>
+                    <h5>⨷ {categoria}</h5>
+                    <h5>⨷ {CV}</h5>
+                    <h5>
+                        ⨷ Ultimo año de competicion: {ultimoAñoDeCompeticion}
+                    </h5>
+                    <h5>⨷ {precio}€</h5>
+                    <h5>⨷ {disponible ? "Disponible" : "No disponible"}</h5>
+                    <hr />
+                    <h4>Descripcion</h4>
+                    <p>{descripcion}</p>
+                    {isLogged && disponible && (
+                        <Button
+                            className={CSS.button}
+                            onClick={onClickHandler}
+                            variant="success"
+                        >
+                            Añadir a la reserva
+                        </Button>
+                    )}
+                </div>
             </div>
         </div>
     );

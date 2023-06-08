@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import CSS from "./Card.module.css";
 import pingRed from "../resources/location-icon-red.png";
-import Logo from "../resources/LogoCabecera1.png";
+import Logo from "../resources/CompetyresSinFondo.png";
 
 function CircuitsCard(props) {
     const { nombre, ubicacion, imagen, precioPorVuelta, pais } =
@@ -18,7 +18,7 @@ function CircuitsCard(props) {
                 {props.circuit ? (
                     <>
                         <Card.Title className={`${CSS.m10} ${CSS.truncate}`}>
-                            <img src={bandera} alt=""/>
+                            <img src={bandera} alt="" />
                             {nombre}
                         </Card.Title>
                         <div className={CSS.imgContainer}>
@@ -38,8 +38,8 @@ function CircuitsCard(props) {
                         <img
                             alt="Logo de la app"
                             src={Logo}
-                            width={260}
-                            height={160}
+                            width={200}
+                            height={200}
                             style={{ marginTop: "80px" }}
                         />
                     </>

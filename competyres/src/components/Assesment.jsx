@@ -47,7 +47,11 @@ function Assessment(props) {
     return (
         <>
             {!show ? (
-                <Button onClick={onClickHandler} variant="success">
+                <Button
+                    className={CSS.button}
+                    onClick={onClickHandler}
+                    variant="warning"
+                >
                     Añadir Valoracion
                 </Button>
             ) : (

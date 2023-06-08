@@ -5,10 +5,13 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(1, 1fr);
     gap: 100px;
+    border-top: 1px solid grey;
+    padding-top: 20px;
+
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1360px) {
     .page {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -28,6 +31,8 @@
     display: flex;
     flex: 1;
     justify-content: center;
+    border-bottom: 1px solid grey;
+    margin-bottom: 20px;
 }
 
 .letras {
@@ -43,4 +48,5 @@
     flex-direction: column;
     display: flex;
     justify-content: center;
+    
 }

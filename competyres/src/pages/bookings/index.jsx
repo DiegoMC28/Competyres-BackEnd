@@ -5,20 +5,23 @@ import CarsCard from "../../components/CarsCard";
 import useBooking from "../../hooks/useBooking";
 import DateComponent from "../../components/BookingDate";
 import CircuitsCard from "../../components/CircuitsCard";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import CSS from "./Bookings.module.css";
 
 const Booking = () => {
     const { userData } = useContext(Session);
     const navigate = useNavigate();
     const { token } = userData;
+    const [modalShow, setModalShow] = useState(false);
 
     const { bookingData, clearCircuit, clearCar, editLaps, doBooking } =
         useBooking();
 
     const [bookingDisabled, setBookingDisabled] = useState(true);
 
-    
+    const onClickModal = () => {
+        setModalShow(true);
+    };
 
     const onCarClickHandler = (car) => {
         if (!car) {
@@ -49,6 +52,37 @@ const Booking = () => {
 
     return (
         <div className={CSS.borders}>
+            <Modal
+                className={CSS.modal}
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header className={CSS.modal}>
+                    <Modal.Title
+                        className={CSS.modal}
+                        id="contained-modal-title-vcenter"
+                    >
+                        Realizar reserva
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className={CSS.modal}>
+                    <p>¿Esta seguro de realizar la reserva?</p>
+                </Modal.Body>
+                <Modal.Footer className={CSS.modal}>
+                    <Button variant="success" onClick={bookingHandler}>
+                        Si
+                    </Button>
+                    <Button
+                        variant="danger"
+                        onClick={() => setModalShow(false)}
+                    >
+                        No
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <div className={CSS.cards}>
                 <div>
                     <CircuitsCard
@@ -78,15 +112,16 @@ const Booking = () => {
             <div className={CSS.resto}>
                 <h1>{bookingData.precio}€</h1>
                 <div className={CSS.otro}>
-                    <DateComponent ></DateComponent>
+                    <DateComponent></DateComponent>
                     <Form.Control
                         type="number"
                         onChange={onChangeLapsHandler}
+                        min={1}
                     />
 
                     <Button
                         variant="success"
-                        onClick={bookingHandler}
+                        onClick={onClickModal}
                         disabled={bookingDisabled}
                     >
                         Realizar reserva

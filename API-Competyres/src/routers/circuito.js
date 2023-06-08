@@ -184,7 +184,7 @@ router.delete("/circuito/:id", autentificacion, async (req, res) => {
         const circuito = await Circuito.findByIdAndDelete(req.params.id);
 
         if (!circuito) res.status(404).send();
-
+        
         res.send(circuito);
     } catch (e) {
         res.status(500).send();

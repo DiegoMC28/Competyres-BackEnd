@@ -5,12 +5,15 @@ import { useNavigate } from "react-router-dom";
 import useHttp from "../../hooks/use-http";
 import Booking from "../../components/Booking";
 import CSS from "./Profile.module.css";
+import moment from "moment";
 
 const Profile = () => {
     const { userData, onLogout } = useContext(Session);
     const navigate = useNavigate();
     const { token, isLogged } = userData;
-    const [bookings, setBookings] = useState([]);
+
+    const [bookingsHistory, setBookingsHistory] = useState([]);
+    const [bookingsCurrent, setBookingsCurrent] = useState([]);
     const { sendRequest } = useHttp();
 
     useEffect(() => {
@@ -22,10 +25,30 @@ const Profile = () => {
             };
 
             sendRequest(config).then((bookings) => {
-                setBookings(bookings);
+                const [bookingHistory, bookingCurrent] =
+                    bookingFilter(bookings);
+
+                setBookingsHistory(bookingHistory);
+                setBookingsCurrent(bookingCurrent);
             });
         }
     }, [isLogged, sendRequest, token]);
+
+    const bookingFilter = (bookings) => {
+        const bookingHistory = [];
+        const bookingCurrent = [];
+        const hoy = moment().format("YYYY-MM-DD");
+
+        bookings.forEach((booking) => {
+            if (booking.fecha < hoy) {
+                bookingHistory.push(booking);
+            } else if (booking.fecha > hoy) {
+                bookingCurrent.push(booking);
+            }
+        });
+
+        return [bookingHistory, bookingCurrent];
+    };
 
     const cancelBooking = async (token, _id) => {
         const config = {
@@ -35,7 +58,20 @@ const Profile = () => {
         };
 
         const respuesta = await sendRequest(config);
-        setBookings(respuesta.alquileres);
+        const [bookingHistory, bookingCurrent] = bookingFilter(respuesta);
+
+        setBookingsHistory(bookingHistory);
+        setBookingsCurrent(bookingCurrent);
+
+        // const config = {
+        //     url: "/alquileres",
+        //     method: "GET",
+        //     headers: { Authorization: token },
+        // };
+
+        // sendRequest(config).then((bookings) => {
+        //     setBookings(bookings);
+        // });
     };
 
     const logoutHandler = () => {
@@ -44,21 +80,10 @@ const Profile = () => {
         navigate("/");
     };
 
-    const bookingHistory = [];
-    const bookingCurrent = [];
-
-    const hoy = new Date();
-
-    bookings.forEach((booking) => {
-        if (new Date(booking.fecha) < hoy) {
-            bookingHistory.push(booking);
-        } else if (new Date(booking.fecha) > hoy) {
-            bookingCurrent.push(booking);
-        }
-    });
+    console.log({ bookingsCurrent, bookingsHistory });
 
     return (
-        <div>
+        <div className={CSS.margin}>
             <ProfileComponent
                 Name={userData.nombre}
                 LastName={userData.apellido}
@@ -66,13 +91,13 @@ const Profile = () => {
                 Email={userData.email}
                 logoutHandler={logoutHandler}
             ></ProfileComponent>
-            {bookingCurrent.length !== 0 && (
+            {bookingsCurrent.length !== 0 && (
                 <>
                     <h1 className={CSS.record}>Reservas pendientes</h1>
                     <hr />
                 </>
             )}
-            {bookingCurrent.map((booking) => (
+            {bookingsCurrent.map((booking) => (
                 <Booking
                     key={booking._id}
                     booking={booking}
@@ -80,13 +105,13 @@ const Profile = () => {
                 ></Booking>
             ))}
 
-            {bookingHistory.length !== 0 && (
+            {bookingsHistory.length !== 0 && (
                 <>
                     <h1 className={CSS.record}>Historial de reservas</h1>
                     <hr />
                 </>
             )}
-            {bookingHistory.map((booking) => (
+            {bookingsHistory.map((booking) => (
                 <Booking
                     key={booking._id}
                     booking={booking}

@@ -1,9 +1,11 @@
 .cardStyle:hover {
-    box-shadow: 0 0 30px red;
+    box-shadow: 0 0 15px red;
     transform: scale(1.1);
     transition: 0.5s ease all;
     object-fit: cover;
     cursor: pointer;
+    background-color: black;
+    color: white;
     & .truncate {
         text-overflow: unset;
         overflow: unset;
@@ -11,6 +13,9 @@
     }
 }
 .cardStyle {
+    border: 2px solid rgb(92, 0, 0);
+    background-color: #000a;
+    color: white;
     width: 18rem;
     height: 475px;
     transition: 0.5s ease all;
@@ -46,9 +51,11 @@
     overflow: hidden;
     white-space: nowrap;
 }
-.imgContainer{
-  height: 270px;
-  display: flex;
-  align-items: center;
+.imgContainer {
+    height: 270px;
+    display: flex;
+    align-items: center;
+    & img {
+        background-color: white;
+    }
 }
-

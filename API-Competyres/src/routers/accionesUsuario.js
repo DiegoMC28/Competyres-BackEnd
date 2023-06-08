@@ -13,7 +13,6 @@ router.post("/alquiler", autentificacion, async (req, res) => {
         usuario.alquileres.push(req.body);
         await usuario.save();
 
-
         return res.status(200).send(usuario);
     } catch (e) {
         res.status(400).send(e);
@@ -58,17 +57,13 @@ router.delete("/eliminaralquiler/:id", autentificacion, async (req, res) => {
 
         for (let i = 0; i < usuario.alquileres.length; i++) {
             if (usuario.alquileres[i].id === req.params.id) {
-                const coche = await Coche.findById(usuario.alquileres[i].coche);
-                coche.disponible = undefined;
-                await coche.save();
-                const circuito = await Circuito.findById(
-                    usuario.alquileres[i].circuito
-                );
-                circuito.capacidadCoches += 1;
-                await circuito.save();
+
                 usuario.alquileres.splice(i, 1);
                 await usuario.save();
-                return res.send(usuario);
+                
+                await usuario.populate("alquileres.coche");
+                await usuario.populate("alquileres.circuito");
+                return res.send(usuario.alquileres);
             }
         }
     } catch (e) {
