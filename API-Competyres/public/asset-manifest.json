@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8f0f6301.css",
+    "main.js": "/static/js/main.5af407b9.js",
+    "static/media/desfile-autos-deportivos-o-carrera-carretera.jpg": "/static/media/desfile-autos-deportivos-o-carrera-carretera.8880edbe607dcf0e8551.jpg",
+    "static/media/CompetyresSinFondo.png": "/static/media/CompetyresSinFondo.8de260474d6855afc044.png",
+    "static/media/laurels-icon.webp": "/static/media/laurels-icon.8d9029c537dc1c05c549.webp",
+    "static/media/star-icon-gold.webp": "/static/media/star-icon-gold.0d503a5901b2642e0d53.webp",
+    "static/media/location-icon.webp": "/static/media/location-icon.5f2dab9b7c7004fbc25b.webp",
+    "static/media/car-icon.webp": "/static/media/car-icon.d97a94286e1fa607241e.webp",
+    "static/media/flag-icon.webp": "/static/media/flag-icon.f1a3031d2a50f4d093b9.webp",
+    "static/media/user-icon.webp": "/static/media/user-icon.e52b0b34ac3b0d50b7b2.webp",
+    "static/media/star-icon-white.webp": "/static/media/star-icon-white.617d9c2dd1861a222389.webp",
+    "static/media/exit-icon.webp": "/static/media/exit-icon.fe72abb1dce21578995b.webp",
+    "index.html": "/index.html",
+    "main.8f0f6301.css.map": "/static/css/main.8f0f6301.css.map",
+    "main.5af407b9.js.map": "/static/js/main.5af407b9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8f0f6301.css",
+    "static/js/main.5af407b9.js"
+  ]
+}
