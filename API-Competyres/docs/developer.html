@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./resources/user.css" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <title>Documentacion Competyres</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <img
+                    class="logo"
+                    src="./resources/CompetyresSinFondo.png"
+                    alt="Logo de competyres"
+                />
+                <a class="navbar-brand">Competyres</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarText"
+                    aria-controls="navbarText"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a
+                                class="nav-link active"
+                                aria-current="page"
+                                href="./user"
+                                >Manual Programador</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link active"
+                                aria-current="page"
+                                href="https://documenter.getpostman.com/view/25309228/2s93sf1qiA"
+                                >API</a
+                            >
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-window"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"
+                            />
+                            <path
+                                d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm13 2v2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zM2 14a1 1 0 0 1-1-1V6h14v7a1 1 0 0 1-1 1H2z"
+                            />
+                        </svg>
+                        <a href="/">Acceder a la aplicacion</a>
+                    </span>
+                </div>
+            </div>
+        </nav>
+        <div class="padre">
+            <h1>Manual del Programador</h1>
+            <hr />
+
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a
+                        class="nav-link active"
+                        data-bs-toggle="tab"
+                        href="#Modelo"
+                        >Modelo Entidad/Relacion</a
+                    >
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#Tecno"
+                        >Tecnologias</a
+                    >
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane container active" id="Modelo">
+                    <div class="contenedor">
+                        <p>
+                            Podemos observar que tenemos un total de 5
+                            entidades, usuario, coche, circuito, valoracion y
+                            alquiler. Alquileres es un array de alquileres y
+                            pertenece al usuario. Cada usuario tiene un array de
+                            con sus alquileres. Y cada alquiler depende de un
+                            coche y un circuito. Por ultimo cada valoracion
+                            pertenece a un cliente.
+                        </p>
+                        <img
+                            class="captura"
+                            src="./resources/ModeloEntidadRelacion.png"
+                            alt="Captura de la pagina principal de la app"
+                        />
+                    </div>
+                    <hr />
+                </div>
+                <div class="tab-pane container fade" id="Tecno">
+                    <div class="flexible">
+                        <div class="contenedorTodo">
+                            <div class="contenedorTecnos">
+                                <img
+                                    src="./resources/logo-react-icon.png"
+                                    alt=""
+                                    class="icono"
+                                />
+
+                                <h2>React</h2>
+                            </div>
+                            <div>
+                                <p>
+                                    El frontend de la aplicacion se ha
+                                    desarrollado en la libreria React JS.
+                                </p>
+                            </div>
+                            <div>
+                                <h3>Dependencias</h3>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>bootstrap</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>moment</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>react</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>react-bootstrap</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>react-moment</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>react-router-dom</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>react-scripts</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>web-vitals</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>yet-another-react-lightbox</p>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="contenedorTodo">
+                            <div class="contenedorTecnos">
+                                <img
+                                    src="./resources/nodeJs.png"
+                                    alt=""
+                                    class="icono"
+                                />
+
+                                <h2>NodeJS-Express</h2>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>
+                                    El backend de la aplicacion esta
+                                    desarrollado en NodeJS con Express
+                                </p>
+                            </div>
+                            <div>
+                                <h3>Dependencias</h3>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>bcrypt</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>cors</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>dotenv</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>express</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>express-validator</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>jsonwebtoken</p>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>mongoose</p>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="contenedorTodo">
+                            <div class="contenedorTecnos">
+                                <img
+                                    src="./resources/mongodb.png"
+                                    alt=""
+                                    class="icono"
+                                />
+
+                                <h2>MongoDB</h2>
+                                <hr />
+                            </div>
+                            <div>
+                                <p>
+                                    Para el alojamiento de datos se ha utilizado
+                                    MongoDB
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -24,7 +24,19 @@ const public = path.join(__dirname, "../public");
 
 app.use(express.static(public));
 
-app.get("/docs/user", (req, res)=>{res.sendFile(path.join(__dirname, "../docs/user.html"));})
+app.get("/docs/developer", (req, res) => {
+    res.sendFile(path.join(__dirname, "../docs/developer.html"));
+});
+
+app.get("/docs/user", (req, res) => {
+    res.sendFile(path.join(__dirname, "../docs/user.html"));
+});
+
+app.get("/docs/resources/:file", (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "../docs/resources") + "/" + req.params.file
+    );
+});
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(public, "index.html"));

@@ -30,10 +30,10 @@ const CircuitoSchema = new mongoose.Schema({
         required: false,
         default: "",
     },
-    disponible: {
-        type: Date,
-        required: false,
-    },
+    // disponible: {
+    //     type: Date,
+    //     required: false,
+    // },
     capacidadTotal: {
         type: Number,
         required: true,

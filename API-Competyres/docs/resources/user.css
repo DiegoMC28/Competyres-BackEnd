@@ -1,0 +1,63 @@
+.logo {
+    width: 70px;
+    height: 70px;
+}
+
+.captura {
+    width: 1100px;
+    height: 600px;
+    box-shadow: 0 0 30px black;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.contenedor {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.padre {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 40px;
+    font-weight: bold;
+    & a {
+        color: black;
+    }
+    & a:hover {
+        color: rgb(255, 0, 0);
+    }
+}
+
+.icono {
+    width: 70px;
+    height: 70px;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.contenedorTecnos {
+    display: flex;
+    padding-bottom: 10px;
+    border-bottom: 1px solid grey;
+    & h2 {
+        margin-top: 30px;
+        margin-left: 20px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bolder;
+    }
+}
+
+.contenedorTodo {
+    display: flex;
+    flex-direction: column;
+    margin: 25px;
+    & p {
+        margin: 20px;
+    }
+}
+
+.flexible {
+    display: flex;
+    flex: 3;
+    justify-content: space-around;
+}
